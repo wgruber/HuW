@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Kovarianzanalyse | Höhere Statistik und Wissenschaftstheorie</title>
+  <meta name="description" content="Übungseinheit">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Kovarianzanalyse | Höhere Statistik und Wissenschaftstheorie" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Images/Cover.png" />
+  <meta property="og:description" content="Übungseinheit" />
+  <meta name="github-repo" content="wgruber/HuW" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Kovarianzanalyse | Höhere Statistik und Wissenschaftstheorie" />
+  
+  <meta name="twitter:description" content="Übungseinheit" />
+  <meta name="twitter:image" content="Images/Cover.png" />
+
+<meta name="author" content="Walter Gruber">
+
+
+<meta name="date" content="2019-05-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="motivation.html">
+<link rel="next" href="referenzen.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="vorbemerkung.html"><a href="vorbemerkung.html"><i class="fa fa-check"></i>Vorbemerkung</a></li>
+<li class="part"><span><b>Teil I: Mediatior-Analyse</b></span></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html"><i class="fa fa-check"></i>Mediation</a><ul>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#konzeptuelles-modell"><i class="fa fa-check"></i>Konzeptuelles Modell</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#effektgroen-der-mediation"><i class="fa fa-check"></i>Effektgrößen der Mediation</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#fallbeispiel"><i class="fa fa-check"></i>Fallbeispiel</a><ul>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#regressionsanalyse"><i class="fa fa-check"></i>Regressionsanalyse</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#mediator-analyse"><i class="fa fa-check"></i>Mediator-Analyse</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Teil II: Moderator-Analyse</b></span></li>
+<li class="chapter" data-level="" data-path="moderation.html"><a href="moderation.html"><i class="fa fa-check"></i>Moderation</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html"><i class="fa fa-check"></i>Konzeptuelles Modell</a><ul>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html#formale-beschreibung-des-modells"><i class="fa fa-check"></i>Formale Beschreibung des Modells</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html#zentrierung-der-variablen"><i class="fa fa-check"></i>Zentrierung der Variablen</a><ul>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html#eigenschaften-der-zentrierung"><i class="fa fa-check"></i>Eigenschaften der Zentrierung</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html#grunde-fur-zentrierung"><i class="fa fa-check"></i>Gründe für Zentrierung</a></li>
+<li><a href="konzeptuelles-modell-1.html#interpretation-der-bs">Interpretation der <span class="math inline">\(b\)</span>’s</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html#interaktion"><i class="fa fa-check"></i>Interaktion</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Teil III: Analysis of Covariance</b></span></li>
+<li class="chapter" data-level="" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html"><i class="fa fa-check"></i>Kovarianzanalyse</a><ul>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#voraussetzungen"><i class="fa fa-check"></i>Voraussetzungen</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#berechnung-einer-ancova"><i class="fa fa-check"></i>Berechnung einer ANCOVA</a><ul>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#deskriptive-graphisch-und-homogenitat"><i class="fa fa-check"></i>Deskriptive, graphisch und Homogenität</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#unabhangigkeit"><i class="fa fa-check"></i>Unabhängigkeit</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#berechnung-ancova"><i class="fa fa-check"></i>Berechnung ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#interpretation-ancova"><i class="fa fa-check"></i>Interpretation ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#geplante-kontraste"><i class="fa fa-check"></i>Geplante Kontraste</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#interpretation-kovariate"><i class="fa fa-check"></i>Interpretation Kovariate</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#post-hoc-tests"><i class="fa fa-check"></i>Post hoc Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#nutzliche-graphen"><i class="fa fa-check"></i>Nützliche Graphen</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#homogenitat-der-steigung"><i class="fa fa-check"></i>Homogenität der Steigung</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#bericht-der-ergebnisse"><i class="fa fa-check"></i>Bericht der Ergebnisse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referenzen.html"><a href="referenzen.html"><i class="fa fa-check"></i>Referenzen</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Höhere Statistik und Wissenschaftstheorie</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="kovarianzanalyse" class="section level1 unnumbered">
+<h1>Kovarianzanalyse</h1>
+<p>Im folgenden betrachten wir ein Beispiel, welches die Auswirkungen von Viagra auf den Libido untersucht.</p>
+<p>Es ist naheliegend anzunehmen, dass auch andere Faktoren (wie andere Medikamente, Müdigkeit, etc.) den Libido beeinflussen. Wenn diese Variablen (die Kovariablen) gemessen werden, ist es möglich, den Einfluss, den sie auf die abhängige Variable haben, durch Einbeziehung in das Regressionsmodell zu steuern/kontrolliern.</p>
+<p>Ziel ist es, den Effekt der Kovariaten auf die Zielvariable zu <em>entfernen</em>. Durch diese Maßnahme sollte sich die Wirkungsweise der unabhängigen Variablen (Viagra) auf den Libodo <em>besser</em> zeigen. Es gibt im Wesentlichen zwei Gründe<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> für die Aufnahme von Kovariablen in die ANOVA:</p>
+<ul>
+<li><p><strong>Reduzierung der Fehlervarianz</strong>: in der ANOVA und beim t-Tests wird die Wirkung eines Experiments anhand der erklärbaren Variabilität in den Daten, mit der nicht erklärbaren Variabiliät verglichen. Wenn ein Teil dieser <em>unerklärten</em> Varianz (<em>SSR</em>) einer anderen Variablen (<em>Kovariablen</em>) zugeordnet werden kann, reduziert sich die Fehlervarianz. Damit kann die Wirkung der unabhängigen Variable (<em>SSM</em>) genauer beurteilt werden.</p></li>
+<li><p><strong>Eliminierung von Confounds</strong>: in jedem Experiment kann/wird es Variablen geben, welche nicht gemessen/erhoben wurden, die aber die Ergebnisse der Zielvariablen durchaus beeinflussen können. Sind diese bekannt, kann mit Hilfe der ANCOVA dieser Einfluss beseitigt werden.</p></li>
+</ul>
+<p>Im vorliegenden Beispiel gehen wir davon aus, dass der Libido der Sexualpartner den eigenen Libido beeinflusst<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Das entsprechende Regressionsmodell erweitert sich demnach zu:</p>
+<center>
+<p><span class="math inline">\(libido_i = b_0 + b_3 \cdot covariate_i + b_2 \cdot high_i + b_1 \cdot low_i + \varepsilon_i\)</span></p>
+</center>
+<div id="voraussetzungen" class="section level2 unnumbered">
+<h2>Voraussetzungen</h2>
+<p>Die ANCOVA hat die gleichen Annahmen wie ANOVA, zu welchen es jedoch noch zwei wichtige zusätzliche Überlegungen gibt:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Unabhängigkeit von der Kovariablen- und dem Treatmenteffekt</strong>.
+Abbildung <strong>4-A</strong> zeigt die bereits aus der ANOVA bekannte Zerlegung der Varianzen in eine Fehlervarianz und einer Treatmentvarianz. Abbildung <strong>4-B</strong> stellt eine ideale Voraussetzung für die Verwendung einer Kovariaten dar. Hierbei wird durch die Kovariate ein Teil der Fehlervarianz erklärt, ohne den Effekt des Treatment zu beeinflussen. Abbildung <strong>4-C</strong> hingegen zeigt das Problem bei einer fälschlicherweise verwendeten Kovariaten. Die Kovariate verringert zwar nach wir vor die Fehlervarianz, aber gleichzeitig wird auch der Treatmenteffekt beeinflusst. Statistisch gesehen können wir nur festhalten, dass die Kovariate und das Treatment Varianz gemeinsam erkären. Eine Trennung dieser gemeinsamen Varianz in Anteile Viagra und Kovariate ist nicht möglich!
+Eine einfache Möglichkeit die Kovariate auf ihre Eigenschaft zu prüfen, ist ein einfacher Mittelwertsvergleich (t-Test, ANOVA) der nach Viagragruppen aufgeteilten Kovariaten. Wenn die Gruppen sich nicht unterscheiden, kann von einer Unabhängigkeit ausgegangen werden und sofern die anderen Voraussetzungen erfüllt sind, die Kovariate verwendet werden. Auch durch eine Randomisierung der Gruppenzuordnung kann man unerwünschte Effekte (in Bezug auf die Wirkung der Kovariaten) zwischen den Gruppen evtl. vermeiden.</li>
+</ol>
+<center>
+<div class="figure">
+<img src="Images/Kovarianz_Field_11_2.jpg" alt="Abbildung 20: Wirkungsweise von Kovariate" style="width:80.0%" />
+<p class="caption"><strong>Abbildung 20</strong>: Wirkungsweise von Kovariate</p>
+</div>
+</center>
+<p>Zum besseren Verständnis der mit den ANOVA-Verfahren verbundenen Varianzaufteilung betrachten wir nochmals im Detail die Eigenschaften der verschiedenen Varianzanteile.</p>
+<p>Die Gesamtvarianz (im vorigen Graphen die Varianz von Werten im Libido) wird folgendermaßen ermittelt:</p>
+<center>
+<div class="figure">
+<img src="Images/ANOVA_QS_Total_Graphisch.jpg" alt="Abbildung 21: Totale Quadratsumme" style="width:80.0%" />
+<p class="caption"><strong>Abbildung 21</strong>: Totale Quadratsumme</p>
+</div>
+</center>
+<p>Die Treatmentvarianz (im vorigen Graphen die Varianz die durch das Treatment erklärt wird) entspricht der Variabilität der Mittelwerte der jeweiligen Gruppen (in unserem Fall der Dosierungsstufen):</p>
+<center>
+<div class="figure">
+<img src="Images/ANOVA_QS_Treatment_Graphisch.jpg" alt="Abbildung 22: Treatmentquadratsumme" style="width:80.0%" />
+<p class="caption"><strong>Abbildung 22</strong>: Treatmentquadratsumme</p>
+</div>
+</center>
+<p>Die Fehlervarianz wird aus den durchschnittlichen Abweichungen der beobachteten Werte zu den jeweiligen Gruppenmittelwerten bestimmt (geschätzt). Anhand dieser Darstellung wird auch klar, warum die Varianzgleichheit über die Gruppen hinweg gleich sein sollte. Wäre das nämlich nicht gegeben, würde die Additivität (<span class="math inline">\(QS_1 + \cdots + QS_k\)</span> nicht gegeben sein.</p>
+<center>
+<div class="figure">
+<img src="Images/ANOVA_QS_Fehler_Graphisch.jpg" alt="Abbildung 23: Fehlerquadratsumme" style="width:80.0%" />
+<p class="caption"><strong>Abbildung 23</strong>: Fehlerquadratsumme</p>
+</div>
+</center>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Homogenität der Regressionssteigungen</strong>.
+Bei einer ANCOVA wird die Gesamtbeziehung zwischen dem Ergebnis (abhängige Variable) und der Kovariablen analysiert. D.h., es wird eine <em>Regressionslinie an den gesamten Datensatz angepasst</em> und man <em>ignoriert, zu welcher Gruppe eine Person gehört</em>. Bei der Anpassung dieses Gesamtmodells gehen wir daher davon aus, dass diese Gesamtbeziehung für alle Teilnehmergruppen gilt. Diese Annahme ist für die ANCOVA sehr wichtig. Der beste Weg diese Annahme zu kontrollieren, ist eine Darstellung der Kovariablen (<em>Partner’s Libido</em>) auf der einen und dem Ergebnis (<em>Libido</em>) auf der anderen Achse, getrennt nach den Gruppen (<em>Dosierung</em>). Die Regressionslinien sollten dann mehr oder weniger gleich aussehen (d.h. die Werte von <span class="math inline">\(b\)</span> in jeder Gruppe sollten gleich sein). Im nachfolgender Darstellung wäre diese Voraussetung nicht erfüllt!</li>
+</ol>
+<center>
+<div class="figure">
+<img src="Images/Kovarianz_Field_11_3.jpg" alt="Abbildung 24: Verletzung der Homogenitätsbedingung" style="width:60.0%" />
+<p class="caption"><strong>Abbildung 24</strong>: Verletzung der Homogenitätsbedingung</p>
+</div>
+</center>
+</div>
+<div id="berechnung-einer-ancova" class="section level2 unnumbered">
+<h2>Berechnung einer ANCOVA</h2>
+<p>Bei der Berechnung einer ANCOVA sollten folgende Schritte durchgeführt werden:</p>
+<ol style="list-style-type: decimal">
+<li>Grafischen Darstellung der Daten und der Berechnung einiger deskriptiver Statistiken. Dabei sollten auch die Verteilungsannahmen überprüfen und den Levene-Test durchgeführt werden (Homogenitätstest).</li>
+<li>Überprüfen der Kovariable und alle unabhängigen Variablen auf Unabhängigkeit, d.h. eine ANOVA mit der Kovariablen als Ergebnis und alle unabhängigen Variablen als Prädiktoren durchführen. Damit wird sichergestellt, dass sich die Kovariable auf den Ebenen dieser Variablen nicht signifikant unterscheidet. Wenn man ein signifikantes Ergebnis erhält, dann ist die Analyse bei diesem Schritt beendet<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</li>
+<li>Durchführen der ANCOVA.</li>
+<li>Berechnung der <em>Kontraste</em> oder <em>post hoc-Tests</em> (falls signifikante Ergebnisse vorliegen).</li>
+<li>Überprüfen der Homogenität der Regressionssteigungen. Dies kann graphisch (siehe oben) durchgeführt werden, oder man kann auch die ANCOVA erneut ausführen und die Interaktion zwischen der unabhängigen Variable und der Kovariablen ins Modell aufnehmen. Wenn diese Interaktion signifikant ist, kann man nicht von einer Homogenität der Regressionsflanken ausgehen!</li>
+</ol>
+<div id="deskriptive-graphisch-und-homogenitat" class="section level3 unnumbered">
+<h3>Deskriptive, graphisch und Homogenität</h3>
+<p>Um die Verteilung von Daten darzustellen, kann man z.B. Boxplots für <em>Libido</em> als auch für <em>Libido des Partners</em> erzeugen. Darüber hinaus ist es hilfreich, die Beziehung zwischen der Ergebnisvariablen und der Kovariablen innerhalb jeder Gruppe zu betrachten (dies sagt uns etwas über die Homogenität der Steigungen aus).</p>
+<p><img src="03_ANCOVA_files/figure-html/ANCOVA1-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p>Die Boxplots zeigen den Libido bei den Teilnehmern und ihren Partnern über die drei Dosen von Viagra. Die Libido scheint für die Teilnehmer mit zunehmender Dosis von Viagra zu steigen, aber das Gegenteil gilt für ihre Partner.</p>
+<p>Neben der graphischen Darstellung sind auch die deskriptiven Werte aufschlussreich, da diese Kennwerte wie die Streung (<span class="math inline">\(sd\)</span>) und Mittelwerte (<span class="math inline">\(\bar{x}\)</span>), Konfidenzintervalle (<span class="math inline">\(CI\)</span>), etc. ausgegeben werden.</p>
+<table style="width:99%;">
+<colgroup>
+<col width="12%" />
+<col width="11%" />
+<col width="13%" />
+<col width="20%" />
+<col width="11%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">median</th>
+<th align="center">mean</th>
+<th align="center">SE.mean</th>
+<th align="center">CI.mean.0.95</th>
+<th align="center">var</th>
+<th align="center">std.dev</th>
+<th align="center">coef.var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">3.222</td>
+<td align="center">0.5958</td>
+<td align="center">1.374</td>
+<td align="center">3.194</td>
+<td align="center">1.787</td>
+<td align="center">0.5547</td>
+</tr>
+</tbody>
+</table>
+<table style="width:99%;">
+<colgroup>
+<col width="12%" />
+<col width="11%" />
+<col width="13%" />
+<col width="20%" />
+<col width="11%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">median</th>
+<th align="center">mean</th>
+<th align="center">SE.mean</th>
+<th align="center">CI.mean.0.95</th>
+<th align="center">var</th>
+<th align="center">std.dev</th>
+<th align="center">coef.var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">4.5</td>
+<td align="center">4.875</td>
+<td align="center">0.5154</td>
+<td align="center">1.219</td>
+<td align="center">2.125</td>
+<td align="center">1.458</td>
+<td align="center">0.299</td>
+</tr>
+</tbody>
+</table>
+<table style="width:99%;">
+<colgroup>
+<col width="12%" />
+<col width="11%" />
+<col width="13%" />
+<col width="20%" />
+<col width="11%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">median</th>
+<th align="center">mean</th>
+<th align="center">SE.mean</th>
+<th align="center">CI.mean.0.95</th>
+<th align="center">var</th>
+<th align="center">std.dev</th>
+<th align="center">coef.var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">4.846</td>
+<td align="center">0.5867</td>
+<td align="center">1.278</td>
+<td align="center">4.474</td>
+<td align="center">2.115</td>
+<td align="center">0.4365</td>
+</tr>
+</tbody>
+</table>
+<table style="width:99%;">
+<colgroup>
+<col width="12%" />
+<col width="11%" />
+<col width="13%" />
+<col width="20%" />
+<col width="11%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">median</th>
+<th align="center">mean</th>
+<th align="center">SE.mean</th>
+<th align="center">CI.mean.0.95</th>
+<th align="center">var</th>
+<th align="center">std.dev</th>
+<th align="center">coef.var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">3.444</td>
+<td align="center">0.6894</td>
+<td align="center">1.59</td>
+<td align="center">4.278</td>
+<td align="center">2.068</td>
+<td align="center">0.6005</td>
+</tr>
+</tbody>
+</table>
+<table style="width:99%;">
+<colgroup>
+<col width="12%" />
+<col width="11%" />
+<col width="13%" />
+<col width="20%" />
+<col width="11%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">median</th>
+<th align="center">mean</th>
+<th align="center">SE.mean</th>
+<th align="center">CI.mean.0.95</th>
+<th align="center">var</th>
+<th align="center">std.dev</th>
+<th align="center">coef.var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2.5</td>
+<td align="center">3.125</td>
+<td align="center">0.6105</td>
+<td align="center">1.444</td>
+<td align="center">2.982</td>
+<td align="center">1.727</td>
+<td align="center">0.5526</td>
+</tr>
+</tbody>
+</table>
+<table style="width:97%;">
+<colgroup>
+<col width="12%" />
+<col width="9%" />
+<col width="13%" />
+<col width="20%" />
+<col width="11%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">median</th>
+<th align="center">mean</th>
+<th align="center">SE.mean</th>
+<th align="center">CI.mean.0.95</th>
+<th align="center">var</th>
+<th align="center">std.dev</th>
+<th align="center">coef.var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">0.4529</td>
+<td align="center">0.9868</td>
+<td align="center">2.667</td>
+<td align="center">1.633</td>
+<td align="center">0.8165</td>
+</tr>
+</tbody>
+</table>
+<table style="width:99%;">
+<colgroup>
+<col width="12%" />
+<col width="11%" />
+<col width="13%" />
+<col width="20%" />
+<col width="11%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">median</th>
+<th align="center">mean</th>
+<th align="center">SE.mean</th>
+<th align="center">CI.mean.0.95</th>
+<th align="center">var</th>
+<th align="center">std.dev</th>
+<th align="center">coef.var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">4.367</td>
+<td align="center">0.3571</td>
+<td align="center">0.7304</td>
+<td align="center">3.826</td>
+<td align="center">1.956</td>
+<td align="center">0.448</td>
+</tr>
+</tbody>
+</table>
+<table style="width:99%;">
+<colgroup>
+<col width="12%" />
+<col width="11%" />
+<col width="13%" />
+<col width="20%" />
+<col width="11%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">median</th>
+<th align="center">mean</th>
+<th align="center">SE.mean</th>
+<th align="center">CI.mean.0.95</th>
+<th align="center">var</th>
+<th align="center">std.dev</th>
+<th align="center">coef.var</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2.5</td>
+<td align="center">2.733</td>
+<td align="center">0.3388</td>
+<td align="center">0.6929</td>
+<td align="center">3.444</td>
+<td align="center">1.856</td>
+<td align="center">0.6789</td>
+</tr>
+</tbody>
+</table>
+<p>Der Test auf Varianzhomogeniät wird mit dem Levene’s-Test durchgeführt. Dabei zeigt sich der Test mit dem Median als zentraler Kennwert robuster als die Schätzung durch den Mittelwert (<em>Bemerkung</em>: man kann auch das Verhältnis der größten zur kleinsten Varianz<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> (aus deskriptiver Statistik) bilden und in einer entsprechenden Tabelle auf Signifikanz prüfen).</p>
+<pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># library(car) fÃ¼r Levenes Test</span>
+  <span class="kw">pander</span>(<span class="kw">leveneTest</span>(viagraData<span class="op">$</span>libido, viagraData<span class="op">$</span>dose, <span class="dt">center =</span> median)) <span class="co"># fÃ¼r robustere SchÃ¤tzung!</span></code></pre>
+<table style="width:51%;">
+<caption>Levene’s Test for Homogeneity of Variance (center = median)</caption>
+<colgroup>
+<col width="16%" />
+<col width="6%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Df</th>
+<th align="center">F value</th>
+<th align="center">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>group</strong></td>
+<td align="center">2</td>
+<td align="center">0.3256</td>
+<td align="center">0.7249</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">27</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+<pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">pander</span>(<span class="kw">leveneTest</span>(viagraData<span class="op">$</span>libido, viagraData<span class="op">$</span>dose, <span class="dt">center =</span> mean))</code></pre>
+<table style="width:51%;">
+<caption>Levene’s Test for Homogeneity of Variance (center = mean)</caption>
+<colgroup>
+<col width="16%" />
+<col width="6%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Df</th>
+<th align="center">F value</th>
+<th align="center">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>group</strong></td>
+<td align="center">2</td>
+<td align="center">0.7112</td>
+<td align="center">0.5</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">27</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="unabhangigkeit" class="section level3 unnumbered">
+<h3>Unabhängigkeit</h3>
+<p>Die Unabhängigkeit kann man relativ einfach durch eine ANOVA mit <em>partnerLibido</em> als Ergebnis und <em>Dosis</em> als Prädiktor durchführen.</p>
+<table style="width:83%;">
+<caption>Analysis of Variance Model</caption>
+<colgroup>
+<col width="22%" />
+<col width="6%" />
+<col width="12%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Df</th>
+<th align="center">Sum Sq</th>
+<th align="center">Mean Sq</th>
+<th align="center">F value</th>
+<th align="center">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>dose</strong></td>
+<td align="center">2</td>
+<td align="center">12.77</td>
+<td align="center">6.385</td>
+<td align="center">1.979</td>
+<td align="center">0.1577</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Residuals</strong></td>
+<td align="center">27</td>
+<td align="center">87.1</td>
+<td align="center">3.226</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+<table style="width:92%;">
+<colgroup>
+<col width="27%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.444</td>
+<td align="center">0.5987</td>
+<td align="center">5.753</td>
+<td align="center">4.062e-06</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>doseLow Dose</strong></td>
+<td align="center">-0.3194</td>
+<td align="center">0.8727</td>
+<td align="center">-0.366</td>
+<td align="center">0.7172</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>doseHigh Dose</strong></td>
+<td align="center">-1.444</td>
+<td align="center">0.7788</td>
+<td align="center">-1.855</td>
+<td align="center">0.0746</td>
+</tr>
+</tbody>
+</table>
+<table style="width:88%;">
+<caption>Fitting linear model: partnerLibido ~ dose</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="12%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">30</td>
+<td align="center">1.796</td>
+<td align="center">0.1279</td>
+<td align="center">0.06326</td>
+</tr>
+</tbody>
+</table>
+<p><img src="03_ANCOVA_files/figure-html/ANCOVA4-1.png" width="384" style="display: block; margin: auto;" /></p>
+<pre><code>## $fill
+## [1] FALSE
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;guides&quot;</code></pre>
+<p>Bei den Koeffizienten (Estimate) des Modells entspricht der Intercept den Mittelwert der ersten Dosierungsstufe (= Placebo) und die weiteren den jeweiligen Abstand zum Mittelwert der Placebodosierung!</p>
+</div>
+<div id="berechnung-ancova" class="section level3 unnumbered">
+<h3>Berechnung ANCOVA</h3>
+<p>Nach Überprüfung der Voraussetzungen können wir die ANCOVA berechnen.</p>
+<table style="width:75%;">
+<caption>Anova Table (Type III tests)</caption>
+<colgroup>
+<col width="27%" />
+<col width="12%" />
+<col width="6%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Sum Sq</th>
+<th align="center">Df</th>
+<th align="center">F value</th>
+<th align="center">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">12.94</td>
+<td align="center">1</td>
+<td align="center">4.257</td>
+<td align="center">0.0492</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>partnerLibido</strong></td>
+<td align="center">15.08</td>
+<td align="center">1</td>
+<td align="center">4.959</td>
+<td align="center">0.03483</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>dose</strong></td>
+<td align="center">25.19</td>
+<td align="center">2</td>
+<td align="center">4.142</td>
+<td align="center">0.02745</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Residuals</strong></td>
+<td align="center">79.05</td>
+<td align="center">26</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+<p>Betrachtet man die Signifikanz-Werte, so ist klar, dass die Kovariable die abhängige Variable signifikant vorhersagt, da <span class="math inline">\(F(1,26) = 4.96, p = .035\)</span> ist. Es ist also davon auszugehen, dass der Libido der Person durch die Libido des Partners beeinflusst wird.</p>
+<p>Interessant ist, dass nach Berücksichtigung der Wirkung des Libido’s vom Partners die Wirkung von Viagra signifikant ist (<span class="math inline">\(F(2,26) = 4.14, p = .028\)</span>).</p>
+<p>Wenn wir das nochmals mit den Ergebnissen einer ANOVA (also ohne Berücksichtigung der Kovariaten vergleichen), stellen wir fest, dass durch die Kovariate sich ein nicht signifikantes in ein signifikantes Ergebnis geändert hat.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">pander</span>(car<span class="op">::</span><span class="kw">Anova</span>(<span class="kw">aov</span>(libido <span class="op">~</span><span class="st"> </span>dose, <span class="dt">data =</span> viagraData), <span class="dt">type =</span> <span class="st">&quot;III&quot;</span>))</code></pre>
+<table style="width:75%;">
+<caption>Anova Table (Type III tests)</caption>
+<colgroup>
+<col width="25%" />
+<col width="12%" />
+<col width="6%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Sum Sq</th>
+<th align="center">Df</th>
+<th align="center">F value</th>
+<th align="center">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">93.44</td>
+<td align="center">1</td>
+<td align="center">26.81</td>
+<td align="center">1.891e-05</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>dose</strong></td>
+<td align="center">16.84</td>
+<td align="center">2</td>
+<td align="center">2.416</td>
+<td align="center">0.1083</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Residuals</strong></td>
+<td align="center">94.12</td>
+<td align="center">27</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+<pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">pander</span>(<span class="kw">summary.lm</span>(<span class="kw">aov</span>(libido <span class="op">~</span><span class="st"> </span>partnerLibido <span class="op">+</span><span class="st"> </span>dose, <span class="dt">data =</span> viagraData)))</code></pre>
+<table style="width:90%;">
+<colgroup>
+<col width="27%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">1.789</td>
+<td align="center">0.8671</td>
+<td align="center">2.063</td>
+<td align="center">0.0492</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>partnerLibido</strong></td>
+<td align="center">0.416</td>
+<td align="center">0.1868</td>
+<td align="center">2.227</td>
+<td align="center">0.03483</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>doseLow Dose</strong></td>
+<td align="center">1.786</td>
+<td align="center">0.8494</td>
+<td align="center">2.102</td>
+<td align="center">0.04535</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>doseHigh Dose</strong></td>
+<td align="center">2.225</td>
+<td align="center">0.8028</td>
+<td align="center">2.771</td>
+<td align="center">0.01018</td>
+</tr>
+</tbody>
+</table>
+<table style="width:88%;">
+<caption>Fitting linear model: libido ~ partnerLibido + dose</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="12%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">30</td>
+<td align="center">1.744</td>
+<td align="center">0.2876</td>
+<td align="center">0.2055</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="interpretation-ancova" class="section level3 unnumbered">
+<h3>Interpretation ANCOVA</h3>
+<p>Es scheint ziemlich klar zu sein, dass die signifikante ANOVA einen Unterschied zwischen der Placebogruppe und den beiden experimentellen Gruppen widerspiegelt.</p>
+<table style="width:78%;">
+<caption>Anova Table (Type III tests)</caption>
+<colgroup>
+<col width="27%" />
+<col width="12%" />
+<col width="6%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Sum Sq</th>
+<th align="center">Df</th>
+<th align="center">F value</th>
+<th align="center">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">76.07</td>
+<td align="center">1</td>
+<td align="center">25.02</td>
+<td align="center">3.342e-05</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>partnerLibido</strong></td>
+<td align="center">15.08</td>
+<td align="center">1</td>
+<td align="center">4.959</td>
+<td align="center">0.03483</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>dose</strong></td>
+<td align="center">25.19</td>
+<td align="center">2</td>
+<td align="center">4.142</td>
+<td align="center">0.02745</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Residuals</strong></td>
+<td align="center">79.05</td>
+<td align="center">26</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+<p>Dieser Effekt kann damit begründet werden, da niedrig- und hochdosierten Gruppen sehr ähnliche Mittel haben (<span class="math inline">\(\bar{x}_{Low} = 4.88\)</span>, <span class="math inline">\(\bar{x}_{High} = 4.85\)</span>, während der Mittelwert der Placebogruppe bei <span class="math inline">\(\bar{x}_{Placebo} = 3.22\)</span> viel niedriger ist.</p>
+<table style="width:76%;">
+<colgroup>
+<col width="22%" />
+<col width="12%" />
+<col width="23%" />
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Libido</th>
+<th align="center">Libido_Partner</th>
+<th align="center">Libido_Adj</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Placebo</strong></td>
+<td align="center">3.222</td>
+<td align="center">3.444</td>
+<td align="center">2.926</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Low Dose</strong></td>
+<td align="center">4.875</td>
+<td align="center">3.125</td>
+<td align="center">4.712</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>High Dose</strong></td>
+<td align="center">4.846</td>
+<td align="center">2</td>
+<td align="center">5.151</td>
+</tr>
+</tbody>
+</table>
+<p>Eigentlich können wir aber diese Gruppenmittel nicht interpretieren, da sie nicht um den Effekt der Kovarianz bereinigt wurden. Diese ursprünglichen Mittel sagen uns nichts über die Gruppenunterschiede, die sich in der signifikanten ANCOVA widerspiegeln! Daher müssen für diesen Vergleich die um den Effekt der Kovariaten bereinigten Mittelwerte verwendet werden. Diese sind in obiger Tabelle in Spalte <em>Libido_Adj</em> angegeben!</p>
+<!-- Um die angepassten Mittel zu erhalten, müssen wir die *effect()* Funktion im Effektpaket verwenden. Dies erzeugt eine zusammenfassende Tabelle von Mitteln für einen bestimmten Effekt in einem Modell, das mit aov() oder lm() erstellt, aber an andere Variablen im Modell angepasst wurde (so genannte marginale Mittel).  -->
+</div>
+<div id="geplante-kontraste" class="section level3 unnumbered">
+<h3>Geplante Kontraste</h3>
+<p>Für die Berechnung von Kontrasten können entweder vordefinierte Kontrastcodes, oder eigene Kontrastekodierungen angegeben werden<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. In R lässt sich z.B. ein Kontrast durch folgende Eingabe definieren:</p>
+<pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># für orthogonale Kontraste nach Helmert</span>
+  <span class="kw">contrasts</span>(viagraData<span class="op">$</span>dose) &lt;-<span class="st"> </span><span class="kw">contr.helmert</span>(<span class="dv">3</span>)
+  <span class="co"># für Vergleich von Placebo vs. low- und highdose (-2,1,1), sowie low vs. high</span>
+  <span class="kw">contrasts</span>(viagraData<span class="op">$</span>dose) <span class="op">&lt;</span><span class="st"> </span><span class="op">-</span><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</code></pre>
+<table style="width:92%;">
+<colgroup>
+<col width="27%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.126</td>
+<td align="center">0.625</td>
+<td align="center">5.002</td>
+<td align="center">3.342e-05</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>partnerLibido</strong></td>
+<td align="center">0.416</td>
+<td align="center">0.1868</td>
+<td align="center">2.227</td>
+<td align="center">0.03483</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>dose1</strong></td>
+<td align="center">0.6684</td>
+<td align="center">0.24</td>
+<td align="center">2.785</td>
+<td align="center">0.009852</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>dose2</strong></td>
+<td align="center">0.2196</td>
+<td align="center">0.4056</td>
+<td align="center">0.5414</td>
+<td align="center">0.5928</td>
+</tr>
+</tbody>
+</table>
+<p>Die Ausgabe des zweiten - oben angegebenen - Kontrastes lässt sich folgendermaßen interpretieren:</p>
+<ul>
+<li>die erste Variable (<em>Dosis1</em>) vergleicht die Placebogruppe mit der Niedrig- und Hochdosisgruppe. Als solches vergleicht es den angepassten Mittelwert der Placebogruppe (<span class="math inline">\(\bar{x}_{Placebo} = 2.93\)</span>) mit dem Durchschnitt der angepassten Mittelwerte für die niedrig- und hochdosierten Gruppen (<span class="math inline">\((4.71+5.15)/2 = 4.93\)</span>).</li>
+<li>der b-Wert für die erste Variable sollte daher die Differenz zwischen diesen Werten sein: <span class="math inline">\(4.93 - 2.93 = 2\)</span>.</li>
+<li>dieser Wert wird durch die Anzahl der Gruppen innerhalb des Kontrastes (d.h. 3) dividiert und somit <span class="math inline">\(2/3 = .67\)</span> (wie in der Ausgabe) beträgt. Die zugehörige <span class="math inline">\(t\)</span>-Statistik ist signifikant, was darauf hindeutet, dass sich die Placebogruppe signifikant vom kombinierten Mittelwert der Viagra-Gruppen unterschied.</li>
+<li>die zweite Variable (<em>Dosis2</em>) vergleicht die niedrig- und hochdosierten Gruppen, so dass der <span class="math inline">\(b\)</span>-Wert die Differenz zwischen den eingestellten Mitteln dieser Gruppen sein sollte: <span class="math inline">\(5.15 - 4.71 = 0.44\)</span>. Dieser Wert wird durch die Anzahl der Gruppen innerhalb des Kontrastes (d.h. 2) dividiert wird und somit <span class="math inline">\(0,44/2 = 0,22\)</span> (wie in der Ausgabe) beträgt.</li>
+<li>die zugehörige <span class="math inline">\(t\)</span>-Statistik ist nicht signifikant (<span class="math inline">\(p = .590\)</span>), was darauf hindeutet, dass die hochdosierte Gruppe keine signifikant höhere Libido produzierte als die niedrigdosierte Gruppe.</li>
+<li>der Wert für die <em>Kovariable</em> beträgt (<span class="math inline">\(b = 0.416\)</span>). Wenn also der Libido eines Partners um eine Einheit zunimmt, sollte der Libido der Person um knapp eine halbe Einheit zunehmen (obwohl es nichts gibt, was auf einen kausalen Zusammenhang zwischen den beiden hinweist).</li>
+<li><p>das Vorzeichen dieses Koeffizienten zeigt in welche Richtung die Beziehung zwischen der Kovariablen und dem Ergebnis geht. Da der Koeffizient in diesem Beispiel positiv ist, bedeutet dies also, dass die Libido des Partners in einem positiven Verhältnis zur Libido des Teilnehmers steht:</p></li>
+<li>mit dem einen steigt auch der andere.</li>
+<li><p>ein negativer Koeffizient würde das Gegenteil bedeuten: wenn einer steigt, sinkt der andere.</p></li>
+</ul>
+</div>
+<div id="interpretation-kovariate" class="section level3 unnumbered">
+<h3>Interpretation Kovariate</h3>
+<p>Für die Interpretatiom der Kovariaten verwendet man am besten die Parameterschätzungen (<span class="math inline">\(b\)</span>) in folgender Weise:</p>
+<ul>
+<li>wenn der <span class="math inline">\(b\)</span>-Wert für die Kovariable positiv ist, haben die Kovariable und die Ergebnisvariable eine positive Beziehun, also mit zunehmenden Werten der Kovariable steigt auch das Ergebnis!</li>
+<li>wenn der <span class="math inline">\(b\)</span>-Wert negativ ist, bedeutet das das Gegenteil.</li>
+</ul>
+<p>Für diese Daten war der <span class="math inline">\(b\)</span>-Wert positiv, was darauf hindeutet, dass mit zunehmender Libido des Partners auch die Libido des Teilnehmers steigt. Eine weitere Möglichkeit, das Gleiche zu entdecken, besteht darin, einfach einen Streudiagramm der Kovariablen gegen das Ergebnis zu zeichnen.</p>
+<p>Abschließend wird durch den Scatterplot nochmals bestätigt, was wir bereits wissen: die Kovariable bewirkt, dass mit zunehmender Partnerlibido auch die Libido des Teilnehmers zunimmt (wie die Steigung der Regressionslinie zeigt).</p>
+<p><img src="03_ANCOVA_files/figure-html/ANCOVA10-1.png" width="384" style="display: block; margin: auto;" /></p>
+</div>
+<div id="post-hoc-tests" class="section level3 unnumbered">
+<h3>Post hoc Tests</h3>
+<p>Wie bereits aus der ANOVA bekannt sein sollte, werden bei den Post hoc Tests alle Stufen der unabhängigen Variablen paarweise miteinander verglichen. Im Unterschied zur herkömmlichen ANOVA weden jedoch bei der ANCOVA die adjustierten Mittelwerte verwendet!</p>
+<p>Das Ergebnis zeigt die drei Vergleiche (niedrige Dosis vs. Placebo, hohe Dosis vs. Placebo, hohe Dosis vs. niedrige Dosis).</p>
+<p>Verglichen werden die Differenzen zu den adjustierten Gruppenmitteln</p>
+<ul>
+<li>die Schätzung für die niedrige Dosis vs. Placebo beträgt <span class="math inline">\(4.71 - 2.93 = 1.78\)</span></li>
+<li>für die hohe Dosis vs. Placebo beträgt sie <span class="math inline">\(5.15 - 2.93 = 2.22\)</span> und</li>
+<li>für die niedrige vs. hohe <span class="math inline">\(5.15 - 4.71 = 0.44\)</span></li>
+</ul>
+<p>Der angegebene Standardfehler bezieht sich auf die Differenz zwischen den adjusiterten Mittelwerten.</p>
+<p>Der <span class="math inline">\(t\)</span>-Test (Differenz zwischen den Mitteln geteilt durch den Standardfehler) und dem zugehörigen <span class="math inline">\(p\)</span>-Wert deutet auf signifikante Unterschiede zwischen der Hochdosis- und Placebogruppe (<span class="math inline">\(t = 2.77, p &lt; .050\)</span>) hin.</p>
+<p>Kein Unterschied besteht zwischen der Niedrigdosisgruppe und der Placebogruppe (<span class="math inline">\(t = 2.10, p = .120\)</span>) und der Hochdosisgruppe (<span class="math inline">\(t = 0.54, p = .850\)</span>).</p>
+<p>Die Konfidenzintervalle bestätigen diese Schlussfolgerung (weil sie für den Vergleich der Hochdosis- und Placebogruppen Null nicht enthalten).</p>
+<pre><code>## 
+##   Simultaneous Tests for General Linear Hypotheses
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: aov(formula = libido ~ partnerLibido + dose, data = viagraData)
+## 
+## Linear Hypotheses:
+##                           Estimate Std. Error t value Pr(&gt;|t|)  
+## Low Dose - Placebo == 0      1.786      0.849    2.10    0.109  
+## High Dose - Placebo == 0     2.225      0.803    2.77    0.027 *
+## High Dose - Low Dose == 0    0.439      0.811    0.54    0.852  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## (Adjusted p values reported -- single-step method)</code></pre>
+<pre><code>## 
+##   Simultaneous Confidence Intervals
+## 
+## Multiple Comparisons of Means: Tukey Contrasts
+## 
+## 
+## Fit: aov(formula = libido ~ partnerLibido + dose, data = viagraData)
+## 
+## Quantile = 2.48
+## 95% family-wise confidence level
+##  
+## 
+## Linear Hypotheses:
+##                           Estimate lwr    upr   
+## Low Dose - Placebo == 0    1.786   -0.324  3.896
+## High Dose - Placebo == 0   2.225    0.231  4.219
+## High Dose - Low Dose == 0  0.439   -1.576  2.454</code></pre>
+</div>
+</div>
+<div id="nutzliche-graphen" class="section level2 unnumbered">
+<h2>Nützliche Graphen</h2>
+<p>Zur Überprüfung von Voraussetzungen können sich folgende Graphiken als hilfreich erweisen:</p>
+<p><img src="03_ANCOVA_files/figure-html/ANCOVA13-1.png" width="384" style="display: block; margin: auto;" /><img src="03_ANCOVA_files/figure-html/ANCOVA13-2.png" width="384" style="display: block; margin: auto;" /><img src="03_ANCOVA_files/figure-html/ANCOVA13-3.png" width="384" style="display: block; margin: auto;" /><img src="03_ANCOVA_files/figure-html/ANCOVA13-4.png" width="384" style="display: block; margin: auto;" /></p>
+<p>Von den vier Diagramme sind die ersten beiden die wichtigsten:</p>
+<ul>
+<li>Ersterer kann zur Überprüfung der Varianzhomogenität der Varianz verwendet werden. Es zeigt sich, dass die Verteilung der Scores an einigen Stellen breiter als an anderenis (Funnelling). Die Residuen sind also heteroscedastisch.</li>
+<li>Das zweite Diagramm ist ein Q-Q-Diagramm. Die Punkte im Diagramm sollten nahe der diagonalen Linie liegen. Die vorliegende Verteilung deutet darauf hin, dass keine Normalverteilung vorliegt und daher eher eine robuste ANCOVA<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> angebracht wäre.</li>
+<li>Die dritte Graphik wird auch als <em>Spread-Location-Plot</em> bezeichnet. Diese Darstellung zeigt, ob die Residuen gleichmäßig über die Bereiche der Prädiktoren verteilt sind. So können Sie die Annahme der gleichen Varianz (Homoscedastizität) überprüfen. Es ist gut, wenn man eine horizontale Linie mit gleichmäßig (zufällig) gespreizten Punkten sehen - was hier nicht der Fall ist.</li>
+<li>Die vierte Graphik identifiziert einflussreiche Fälle (Ausreißer). Nicht alle Ausreißer beeinflussen die linearen Regressionsanalyse im negativen Sinn, d.h. die Ergebnisse wären nicht viel anders, wenn wir sie entweder einbeziehen oder von der Analyse ausschließen würden. Sie folgen in den meisten Fällen dem Trend und sind nicht wirklich wichtig. Andererseits können einige Fälle sehr einflussreich sein, auch wenn sie sich in einem angemessenen Bereich der Werte bewegen. Sie können Extremfälle gegen eine Regressionslinie sein und die Ergebnisse verändern, wenn wir sie von der Analyse ausschließen. Im Gegensatz zu den anderen Graphiken sind hier Muster nicht relevant. Man achtet auf die äußeren Werte in der oberen rechten Ecke oder in der unteren rechten Ecke. Diese Punkte sind die Orte, an die für eine Regressionslinie einflussreich sein können. Man beachtet vor allem Fälle, die <em>außerhalb einer gestrichelten Linie</em> (Cook’s Distance) sind. Werte die außerhalb liegen, sind für die Regressionsergebnisse von Bedeutung. Die Regressionsergebnisse werden geändert, wenn wir diese Fälle ausschließen!</li>
+</ul>
+</div>
+<div id="homogenitat-der-steigung" class="section level2 unnumbered">
+<h2>Homogenität der Steigung</h2>
+<p>Bereits im Scatterplot der nach Gruppen getrennten Regressionen konnten wir feststellen, dass die Annahme der Homogenität der Regressionssteigungen für die <em>Hochdosisgruppe</em> unterschiedlich verletzt wird. Um einen statistischen Test dieser Annahme durchzufürhen, wird die ANCOVA unter Einbeziehung des Interaktionseffektes zwischen der Kovariaten und dem Prädiktor nochmals durchgeführt.</p>
+<table style="width:85%;">
+<caption>Anova Table (Type III tests)</caption>
+<colgroup>
+<col width="34%" />
+<col width="12%" />
+<col width="6%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Sum Sq</th>
+<th align="center">Df</th>
+<th align="center">F value</th>
+<th align="center">Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">53.54</td>
+<td align="center">1</td>
+<td align="center">21.92</td>
+<td align="center">9.323e-05</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>partnerLibido</strong></td>
+<td align="center">17.18</td>
+<td align="center">1</td>
+<td align="center">7.035</td>
+<td align="center">0.01395</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>dose</strong></td>
+<td align="center">36.56</td>
+<td align="center">2</td>
+<td align="center">7.484</td>
+<td align="center">0.00298</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>partnerLibido:dose</strong></td>
+<td align="center">20.43</td>
+<td align="center">2</td>
+<td align="center">4.181</td>
+<td align="center">0.02767</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Residuals</strong></td>
+<td align="center">58.62</td>
+<td align="center">24</td>
+<td align="center">NA</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+<p>Die Auswirkungen der Dosis von Viagra und der Libido des Partners sind immer noch signifikant, aber da die Interaktion (partnerLibido:dose) signifikant (<span class="math inline">\(p = .028\)</span>) ist, ist die Annahme der Homogenität der Regressionsgeraden verletzt.</p>
+<p>Obwohl dieser Befund nicht überraschend ist (vgl. Graphik oben), gibt er Anlass zur Sorge über die Hauptanalyse. Dieses Beispiel veranschaulicht, warum es wichtig ist, Annahmen zu testen und nicht nur die Ergebnisse einer Analyse blind zu akzeptieren!</p>
+</div>
+<div id="bericht-der-ergebnisse" class="section level2 unnumbered">
+<h2>Bericht der Ergebnisse</h2>
+<p>Der Ergebnissbericht einer ANCOVA ist weitgehend identisch mit der einer ANOVA. Hinzu kommt lediglich die Wirkung der Kovariablen. Für die Kovariable und den experimentellen Effekt berichten wir Details über das <span class="math inline">\(F\)</span>-Verhältnis und die Freiheitsgrade, aus denen es berechnet wurde. In beiden Fällen wurde das <span class="math inline">\(F\)</span>-Verhältnis aus der Division der mittleren Quadrate für den Effekt durch die mittleren Quadrate der Residuen ermittelt. Die Freiheitsgrade zur Beurteilung des <span class="math inline">\(F\)</span>-Wertes sind daher die Freiheitsgrade für die Wirkung des Modells (<span class="math inline">\(df_M = 1\)</span> für die Kovariable und <span class="math inline">\(2\)</span> für die experimentelle Wirkung) und die Freiheitsgrade für die Residuen des Modells (<span class="math inline">\(df_R = 26\)</span> für die Kovariable und die experimentelle Wirkung). Der Bericht könnte folgendermaßen abgefasst werden:</p>
+<blockquote>
+<p>Die Kovariable (Libido des Partners) zeigt einen signifikanten Zusammenhang mit dem Libido des Teilnehmers (<span class="math inline">\(F(1, 26) = 4.96, p &lt; .050, r = 0.40\)</span>. Kontrolliert man für den Effelt des Libido’s des Partners, dann zeigt sich auch ein signifikanter Effekt der Dosis von Viagra auf den Libido (<span class="math inline">\(F(2, 26) = 4.14, p &lt; .050, \eta^2_{part} = .24\)</span>).</p>
+</blockquote>
+<blockquote>
+<p>Die geplanten Kontraste zeigten, dass die Einnahme einer hohen oder niedrigen Dosis von Viagra den Libido im Vergleich zur Einnahme eines Placebos signifikant erhöht (<span class="math inline">\(t(26) = 2,79, p &lt; .010, r = 0.48\)</span>). Es gab keinen signifikanten Unterschied zwischen der hohen und niedrigen Dosis von Viagra (<span class="math inline">\(t(26) = 0.54, p = .590, r = 0.11\)</span>).</p>
+</blockquote>
+<blockquote>
+<p>Die Tukey-Post-Hoc-Tests zeigten, dass der über die Kovariate angepasste Mittelwert der Hochdosis-Gruppe signifikant größer war als der des Placebos (Differenz = 2.22, <span class="math inline">\(t = 2.77, p &lt; .050, d = 1,13\)</span>). Es gab jedoch keinen signifikanten Unterschied zwischen der Niedrigdosis- und Placebogruppe (Differenz = 1.79, <span class="math inline">\(t = 2.10, p = .110, d = 1.04\)</span>) und zwischen der Niedrigdosis- und der Hochdosisgruppe (Differenz = 0.44, <span class="math inline">\(t = 0.54, p = .850, d = 0.11\)</span>).</p>
+</blockquote>
+<blockquote>
+<p>Trotz der fehlenden Bedeutung zwischen der Niedrigdosis- und der Placebogruppe war die Effektgröße ziemlich groß.</p>
+</blockquote>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Es gibt noch andere Gründe für die Aufnahme von Kovariablen in die ANOVA, welche in der Berechnung der ANCOVA detailliert beschrieben werden. Siehe <span class="citation">(Stevens <a href="#ref-Stevens.2002">2002</a>)</span>, <span class="citation">(Wildt <a href="#ref-Wildt.2009">2009</a>)</span>.<a href="kovarianzanalyse.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>wie oft sie versuchten, sexuellen Kontakt aufzunehmen.<a href="kovarianzanalyse.html#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>möglicherweise kann man eine robuste Version des Tests ausführen, Details später.<a href="kovarianzanalyse.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Hartely’s <span class="math inline">\(F_{max}\)</span> variance ratio.<a href="kovarianzanalyse.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>für eine Liste vordefinierter Kontraste siehe Literatur. Kontraste können sowohl in SPSS wie auch in R durch entsprechende Kontrastcodierungen definiert werden. Bei R ist darauf zu achten, dass bei orthogonalen Kontrasten die Type III sum of squares verwendet wird, da sonst die Quatratsummen für derartige Kontraste nicht stimmen!<a href="kovarianzanalyse.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>robuste ANCOVAS werden in dieser LV nicht näher besprochen - siehe Literatur.<a href="kovarianzanalyse.html#fnref6" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="motivation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referenzen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Modellbildung2.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Dummy Kodierung | Statistik mit R für Fortgeschrittene</title>
+  <meta name="description" content="Statistische Modellbildung - Teil 2">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Dummy Kodierung | Statistik mit R für Fortgeschrittene" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Images/Cover.png" />
+  <meta property="og:description" content="Statistische Modellbildung - Teil 2" />
+  <meta name="github-repo" content="wgruber/Modellbildung2" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Dummy Kodierung | Statistik mit R für Fortgeschrittene" />
+  
+  <meta name="twitter:description" content="Statistische Modellbildung - Teil 2" />
+  <meta name="twitter:image" content="Images/Cover.png" />
+
+<meta name="author" content="Walter Gruber">
+
+
+<meta name="date" content="2019-05-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="kategorielle-pradiktoren.html">
+<link rel="next" href="modelle-mit-kategoriellen-variablen.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="vorbemerkung.html"><a href="vorbemerkung.html"><i class="fa fa-check"></i>Vorbemerkung</a></li>
+<li class="chapter" data-level="" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="part"><span><b>Teil III: Dummy-Codierung</b></span></li>
+<li class="chapter" data-level="" data-path="kategorielle-pradiktoren.html"><a href="kategorielle-pradiktoren.html"><i class="fa fa-check"></i>Kategorielle Prädiktoren</a><ul>
+<li class="chapter" data-level="" data-path="kategorielle-pradiktoren.html"><a href="kategorielle-pradiktoren.html#mehrstufiger-kategorieller-pradiktor"><i class="fa fa-check"></i>Mehrstufiger kategorieller Prädiktor</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dummy-kodierung.html"><a href="dummy-kodierung.html"><i class="fa fa-check"></i>Dummy Kodierung</a></li>
+<li class="chapter" data-level="" data-path="modelle-mit-kategoriellen-variablen.html"><a href="modelle-mit-kategoriellen-variablen.html"><i class="fa fa-check"></i>Modelle mit kategoriellen Variablen</a></li>
+<li class="part"><span><b>Teil IV: Mediatior-Analyse</b></span></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html"><i class="fa fa-check"></i>Mediation</a><ul>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#konzeptuelle-modell"><i class="fa fa-check"></i>Konzeptuelle Modell</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#effektgroen-der-mediation"><i class="fa fa-check"></i>Effektgrößen der Mediation</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#fallbeispiel"><i class="fa fa-check"></i>Fallbeispiel</a><ul>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#regressionsanalyse"><i class="fa fa-check"></i>Regressionsanalyse</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referenzen.html"><a href="referenzen.html"><i class="fa fa-check"></i>Referenzen</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistik mit R für Fortgeschrittene</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dummy-kodierung" class="section level1 unnumbered">
+<h1>Dummy Kodierung</h1>
+<p>Man nennt diesen Vorgang auch <strong>Dummy Kodierung</strong>. Die Vorgehensweise ist dabei:</p>
+<ol style="list-style-type: decimal">
+<li>Die Anzahl der neuen (Dummy) Variablen ist die Anzahl der Stufen des Prädiktors - 1 <span class="math inline">\((N_{DummyVars} = N_{Stufen} - 1)\)</span></li>
+<li>Man legt so viele neue Variablen (Dummy-Variablen) an, wie man (im ersten Schritt) als Anzahl der Gruppen berechnet hat.</li>
+<li>Wahl einer Bezugsgruppe (Baseline-Bedingung). üblicherweise die Kontrollgruppe, falls keine vorhanden wählt man am besten die Gruppe, in der die meisten Personen/Fälle vorliegen.</li>
+<li>Allen Dummy-Variablen für die gewählte Baselinegruppe den Zahlenwert 0 zuweisen.</li>
+<li>Der ersten Dummy-Variablen für die erste Gruppe die man gegen die Baselinegruppe vergleichen will den Wert 1 zuweisen, den restlichen Gruppen den Wert 0.</li>
+<li>Wiederholung des Schrittes 5, bis alle Dummy-Variablen entsprechend codiert wurden.</li>
+<li>Alle Dummy-Variablen ins Modell aufnehmen!</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center">DVar1</th>
+<th align="center">DVar2</th>
+<th align="center">DVar2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Crusty</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="left">Indie Kid</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="left">Metaller</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="left">No Affliation</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<p>Bei der linearen Modellierung in R werden kategorielle Daten im Modell automatisch Dummy-Kodiert. Will man jedoch eine spezielle Anordung der Gruppen, sollte man wissen, wie eine händische Kodierung einfach durchgeführt werden kann. Im folgenden Code werden diese Möglichkeiten dargestellt:</p>
+<pre class="sourceCode r"><code class="sourceCode r">    <span class="co"># Automatisch ohne Bezeichnung der Dummyvariablen</span>
+    <span class="kw">contrasts</span>(DF<span class="op">$</span>music) &lt;-<span class="st"> </span><span class="kw">contr.treatment</span>(<span class="dv">4</span>, <span class="dt">base =</span> <span class="dv">4</span>)
+    <span class="co"># Manuel mit Bezeichnung der Dummyvariablen</span>
+    crusty_v_NMA        &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>)
+    indie_v_NMA         &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>)
+    metal_v_NMA         &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>)
+    <span class="kw">contrasts</span>(DF<span class="op">$</span>music) &lt;-<span class="st"> </span><span class="kw">cbind</span>(crusty_v_NMA, indie_v_NMA, metal_v_NMA)
+    <span class="kw">pander</span>(<span class="kw">attr</span>(DF<span class="op">$</span>music, <span class="st">&quot;contrasts&quot;</span>), <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="20%" />
+<col width="19%" />
+<col width="19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">crusty_v_NMA</th>
+<th align="center">indie_v_NMA</th>
+<th align="center">metal_v_NMA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Crusty</strong></td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Indie Kid</strong></td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Metaller</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>No Musical Affiliation</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="kategorielle-pradiktoren.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelle-mit-kategoriellen-variablen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Modellbildung2.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

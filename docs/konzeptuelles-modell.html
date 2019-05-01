@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Konzeptuelles Modell | Statistik mit R für Fortgeschrittene</title>
+  <meta name="description" content="Statistische Modellbildung - Teil 2">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Konzeptuelles Modell | Statistik mit R für Fortgeschrittene" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Images/Cover.png" />
+  <meta property="og:description" content="Statistische Modellbildung - Teil 2" />
+  <meta name="github-repo" content="wgruber/Modellbildung2" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Konzeptuelles Modell | Statistik mit R für Fortgeschrittene" />
+  
+  <meta name="twitter:description" content="Statistische Modellbildung - Teil 2" />
+  <meta name="twitter:image" content="Images/Cover.png" />
+
+<meta name="author" content="Walter Gruber">
+
+
+<meta name="date" content="2019-05-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="moderation.html">
+<link rel="next" href="referenzen.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="vorbemerkung.html"><a href="vorbemerkung.html"><i class="fa fa-check"></i>Vorbemerkung</a></li>
+<li class="chapter" data-level="" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="part"><span><b>Teil V: Moderator-Analyse</b></span></li>
+<li class="chapter" data-level="" data-path="moderation.html"><a href="moderation.html"><i class="fa fa-check"></i>Moderation</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html"><i class="fa fa-check"></i>Konzeptuelles Modell</a><ul>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#formale-beschreibung-des-modells"><i class="fa fa-check"></i>Formale Beschreibung des Modells</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#zentrierung-der-variablen"><i class="fa fa-check"></i>Zentrierung der Variablen</a><ul>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#eigenschaften-der-zentrierung"><i class="fa fa-check"></i>Eigenschaften der Zentrierung</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#grunde-fur-zentrierung"><i class="fa fa-check"></i>Gründe für Zentrierung</a></li>
+<li><a href="konzeptuelles-modell.html#interpretation-der-bs">Interpretation der <span class="math inline">\(b\)</span>’s</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#interaktion"><i class="fa fa-check"></i>Interaktion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referenzen.html"><a href="referenzen.html"><i class="fa fa-check"></i>Referenzen</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistik mit R für Fortgeschrittene</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="konzeptuelles-modell" class="section level1 unnumbered">
+<h1>Konzeptuelles Modell</h1>
+<p>Eine Moderatorvariable ist eine Variable, welche die Beziehung zweier anderer Variablen beeinflusst.</p>
+<center>
+<div class="figure">
+<img src="Images/ModeratorModell.jpg" alt="Abbildung 18: Konzeptuelles Modell Moderation" style="width:40.0%" />
+<p class="caption">Abbildung 18: Konzeptuelles Modell Moderation</p>
+</div>
+</center>
+<p>Im Prinzip stellt sich also die Frage, ob eine Variable (<span class="math inline">\(X_1\)</span>) einen Interaktionseffekt auf die Beziehung der beiden anderen Variablen (<span class="math inline">\(Y, X_2\)</span>) bewirkt. Ein derartiger Interaktionseffekt ist im statistischen Sinne gleichzusetzen mit einem Moderationseffekt (konzeptueller Begriff).</p>
+<p>Betrachtet man die Beziehung zwischen der abhängigen Variablen (<em>Aggression</em>) und der erklärenden Variablen (<em>Vid_Games</em>):</p>
+<pre class="sourceCode r"><code class="sourceCode r">    p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(DF, <span class="kw">aes</span>(<span class="dt">x =</span> Vid_Games, <span class="dt">y =</span> Aggression)) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">        </span><span class="kw">theme_bw</span>()
+    <span class="kw">print</span>(p, <span class="dt">comment =</span> <span class="ot">FALSE</span>)</code></pre>
+<p><img src="05_Moderation_files/figure-html/Deskriptiv1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">    SumMod1 &lt;-<span class="st"> </span><span class="kw">summary</span>(<span class="kw">lm</span>(Aggression <span class="op">~</span><span class="st"> </span>Vid_Games, <span class="dt">data =</span> DF))
+    <span class="kw">pander</span>(SumMod1)</code></pre>
+<table style="width:89%;">
+<colgroup>
+<col width="25%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">34.84</td>
+<td align="center">1.96</td>
+<td align="center">17.77</td>
+<td align="center">1.166e-53</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Vid_Games</strong></td>
+<td align="center">0.2385</td>
+<td align="center">0.08552</td>
+<td align="center">2.789</td>
+<td align="center">0.005515</td>
+</tr>
+</tbody>
+</table>
+<table style="width:89%;">
+<caption>Fitting linear model: Aggression ~ Vid_Games</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="13%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">442</td>
+<td align="center">12.5</td>
+<td align="center">0.01737</td>
+<td align="center">0.01514</td>
+</tr>
+</tbody>
+</table>
+<p>scheint die Spieldauer und Aggression nur in einem geringen Ausmaß miteinander in Beziehung zu stehen. Die aufgeklärte Varianz beträgt gerade einmal <code>1.737</code>%.</p>
+<p>Ein anderes Bild ergibt sich jedoch, wenn man die Daten unter Berücksichtigung der Variablen <em>CaUnTs</em> betrachtet. Teilt man die Variable <em>CaUnTs</em> z.B. durch einen Mediansplit in zwei Gruppen (<em>CaUnTs_Grp</em> = Low und High), zeigt sich bereits ein sehr unterschiedliches Bild:</p>
+<pre class="sourceCode r"><code class="sourceCode r">    p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(DF, <span class="kw">aes</span>(<span class="dt">x =</span> Vid_Games, <span class="dt">y =</span> Aggression, <span class="dt">color =</span> CaUnTs_Grp)) <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">        </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> lm, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">        </span><span class="kw">theme_bw</span>()
+    <span class="kw">print</span>(p1, <span class="dt">comment =</span> <span class="ot">FALSE</span>)</code></pre>
+<p><img src="05_Moderation_files/figure-html/Deskriptiv2-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Durch die Trennung können folgende Eigenschaften in den Daten beobachtet werden:</p>
+<ul>
+<li>Bei Personen die keine CUT aufweisen, besteht keine Beziehung der Spieldauer und der Aggression.</li>
+<li>Personen die einen CUT aufweisen, zeigen eine positive Beziehung, d.h. je mehr Zeit sie spielen, desto
+höher wird ihr Aggressionslevel.</li>
+<li>Die CUT beeinflusst (moderiert) daher die Beziehung der Spieldauer und Aggression.</li>
+</ul>
+<p>Den Effekt der Variablen <em>CaUnTs</em> (Moderatorvariablen) kann man sich gut durch folgende Darstellung vorstellen:</p>
+<pre class="sourceCode r"><code class="sourceCode r">    Mod_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(Aggression <span class="op">~</span><span class="st"> </span>Vid_Games <span class="op">*</span><span class="st"> </span>CaUnTs, <span class="dt">data=</span>DF)
+    <span class="co"># plotPlane(model = Mod_1, plotx1 = &quot;Vid_Games&quot;, plotx2 = &quot;CaUnTs&quot;)</span></code></pre>
+<center>
+<div class="figure">
+<img src="Images/Moderation3DPlot.JPG" alt="Abbildung 19: Moderator-Effekt" style="width:50.0%" />
+<p class="caption">Abbildung 19: Moderator-Effekt</p>
+</div>
+</center>
+<p>Dass die Moderatorvariable einen Einfluss auf die Beziehung zwischen <em>Vid_Games</em> und <em>Aggression</em> hat, zeigt sich vor allem dadurch dass bei niedrigen <em>CaUnTs</em>-Werten eine negative und bei hohen <em>CaUnTs</em>-Werten eine positive Beziehung zwischen Spieldauer und Aggression besteht. Damit wird auch der Kernpunkt eines Moderationseffektes angesprochen. Ein Moderationseffekt liegt vor, wenn sich die Beziehung zweier Variablen vom Wertebereich des Moderator abhängig ist.</p>
+<div id="formale-beschreibung-des-modells" class="section level2 unnumbered">
+<h2>Formale Beschreibung des Modells</h2>
+<p>Das lineare Modell einer Moderationsanalyse erweitert die bereits bekannte multiple Regression um den Interaktionsterm:</p>
+<p><span class="math inline">\(\widehat{Aggression}_i = (b_0 + b_1 \cdot Spieldauer_i + b_2 \cdot Callous_i + b_3 \cdot Interaktion_i)\)</span></p>
+<p>In den meisten Statistikprogrammen (R, SPSS, SAS, etc.) gibt es Pakete/Makros, mit denen die Moderationsanalyse (u.v.m) speziell aufbereitet wird. Im vorliegenden Fall sollte anhand des einfachen Modells die grundlegende Idee vorgestellte werden.</p>
+<p>Bei der obigen Formel sind bis auf die Interaktion alle Daten bereits im geladenen Datenmaterial verfügbar. Die Interaktion kann nun sehr leicht aus diesen Daten berechnet und als weitere Variable im Datenframe abgespeichert werden. Dazu braucht man nur die beiden Variablen <em>Vid_Games</em> und <em>CaUnTs</em> multiplizieren und speichern.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    DF<span class="op">$</span>IA &lt;-<span class="st"> </span>DF<span class="op">$</span>Vid_Games<span class="op">*</span>DF<span class="op">$</span>CaUnTs</code></pre>
+<p>Im nachfolgenden Ergebnis ist vor allem der Interaktionseffekt von Interesse. Ist die Interaktion signifikant, kann man davon ausgehen, dass ein bedeutsamer Moderationseffekt vorliegt.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">pander</span>(<span class="kw">summary</span>(Mod_<span class="dv">1</span>))</code></pre>
+<table style="width:96%;">
+<colgroup>
+<col width="31%" />
+<col width="15%" />
+<col width="18%" />
+<col width="13%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">33.12</td>
+<td align="center">3.427</td>
+<td align="center">9.664</td>
+<td align="center">3.729e-20</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Vid_Games</strong></td>
+<td align="center">-0.3336</td>
+<td align="center">0.1508</td>
+<td align="center">-2.212</td>
+<td align="center">0.0275</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>CaUnTs</strong></td>
+<td align="center">0.1689</td>
+<td align="center">0.161</td>
+<td align="center">1.049</td>
+<td align="center">0.2947</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Vid_Games:CaUnTs</strong></td>
+<td align="center">0.02706</td>
+<td align="center">0.006981</td>
+<td align="center">3.877</td>
+<td align="center">0.0001221</td>
+</tr>
+</tbody>
+</table>
+<table style="width:88%;">
+<caption>Fitting linear model: Aggression ~ Vid_Games * CaUnTs</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="12%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">442</td>
+<td align="center">9.976</td>
+<td align="center">0.3773</td>
+<td align="center">0.373</td>
+</tr>
+</tbody>
+</table>
+<p>Bei vorliegender signifikanter Interaktion kann durch eine <strong>Simple Slope Analyse</strong> (SSA) die Beziehung zwischen Prädiktor und Kriterium für verschiedene Werte des Moderators untersucht werden.</p>
+<p>Häufig werden dafür drei Werte des Moderators (niedrig = <span class="math inline">\(\bar{x}_{Mod} - sd_{Mod}\)</span>, mittel = <span class="math inline">\(\bar{x}_{Mod}\)</span>, hoch = <span class="math inline">\(\bar{x}_{Mod} + sd_{Mod}\)</span>) verwendet. In der folgenden Abbildung wurden die Datenpunkte noch zusätzlich nach Ihrer Ausprägung (Größe) bei <em>CaUnTs</em> gewichtet.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    <span class="co"># library(interactions)</span>
+    <span class="co"># # https://cran.r-project.org/web/packages/jtools/vignettes/interactions.html</span>
+    <span class="kw">interact_plot</span>(Mod_<span class="dv">1</span>,
+                  <span class="dt">pred =</span> <span class="st">&quot;Vid_Games&quot;</span>,
+                  <span class="dt">modx =</span> <span class="st">&quot;CaUnTs&quot;</span>,
+                  <span class="dt">plot.points =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="05_Moderation_files/figure-html/SimpleSlope_1-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Für eine feiner Aufteilung, bzw. Darstellung des Wirkungsbereiches vom Moderator kann über die Johnson und Neymann Methode sehr viele Werte des Moderators berechnen werden. Die entsprechenden <span class="math inline">\(b\)</span>’s werden ermittelt und daraus Signifikanz-Zonen berechnet. Damit werden die Werte des Moderators ermittelt, ab welchen der Prädiktor ein signifikantes Ergebnis liefert.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    Mod_SS &lt;-<span class="st"> </span><span class="kw">lm</span>(Aggression <span class="op">~</span><span class="st"> </span>Vid_Games <span class="op">+</span><span class="st"> </span>CaUnTs <span class="op">+</span><span class="st"> </span>(Vid_Games <span class="op">*</span><span class="st"> </span>CaUnTs), <span class="dt">data=</span>DF)
+    SS_Res &lt;-<span class="st"> </span><span class="kw">sim_slopes</span>(Mod_SS, <span class="dt">pred =</span> Vid_Games, <span class="dt">modx =</span> CaUnTs, <span class="dt">johnson_neyman =</span> <span class="ot">TRUE</span>)    
+    <span class="kw">johnson_neyman</span>(Mod_SS, <span class="dt">pred =</span> Vid_Games, <span class="dt">modx =</span> CaUnTs, <span class="dt">alpha =</span> <span class="fl">0.01</span>)</code></pre>
+<p>JOHNSON-NEYMAN INTERVAL</p>
+<p>When CaUnTs is OUTSIDE the interval [-5.35, 18.86], the slope of
+Vid_Games is p &lt; .01.</p>
+<p>Note: The range of observed values of CaUnTs is [0.00, 43.00]</p>
+<p><img src="05_Moderation_files/figure-html/SimpleSlope_2-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="zentrierung-der-variablen" class="section level2 unnumbered">
+<h2>Zentrierung der Variablen</h2>
+<p>Durch die Berücksichtigung der Interaktion, bekommen die Koeffizienten eine spezielle Bedeutung.</p>
+<p>Ein Prädiktor <span class="math inline">\(X_i\)</span> repräsentiert die Regression des Kriteriums, wenn die anderen Prädiktoren <span class="math inline">\(X_{j \ne i}\)</span> gleich Null sind!</p>
+<p>Im Beispiel:</p>
+<ul>
+<li><span class="math inline">\(b_1\)</span> entspricht dem Koeffizienten einer Regression wenn CaUnTs gleich Null ist, also keine Gefühls und emotionslosen Charaktereigenschaften aufweist.</li>
+<li><span class="math inline">\(b_2\)</span> entspricht dem Koeffizienten einer Regression wenn VidGames gleich Null ist, also 0 Stunden Video gespielt hat.</li>
+</ul>
+<p>Im gegebenen Beispiel sind für beide Prädiktoren Null-Werte durchaus möglich. Würde man aber anstelle der Charaktereigenschaften die Herz-Rate der Jugendlichen messen, wäre ein Wert von Null nicht sinnvoll.</p>
+<p>Aus diesem Grund werden in einer Moderationsanalyse die Prädiktoren transformiert. Man zentriert die Daten auf die Abweichungen des <em>grand averages</em>.</p>
+<div id="eigenschaften-der-zentrierung" class="section level3 unnumbered">
+<h3>Eigenschaften der Zentrierung</h3>
+<p>Das Zentrieren der Prädiktoren ist ähnlich der bekannten z-Transformation, wobei bei der Zentrierung die Division durch die Standardabweichung nicht relevant ist.</p>
+<p>Formal entsprechen die zentrierten Daten also:</p>
+<p><span class="math inline">\(X^C_{1i} = X_{1i} - \bar{X}_{11}\)</span></p>
+<p>Die Zentrierung hat keinen Einfluss auf den Koeffizienten, welcher die meisten Variablen (highest-order-predictor) verknüpft. Im gegebenen Beispiel entspricht das dem Koeffizienten <span class="math inline">\(b_3\)</span>, also der Interaktion. Für die Koeffizienten <span class="math inline">\(b_1\)</span> und <span class="math inline">\(b_2\)</span> bewirkt die Zentrierung:</p>
+<ul>
+<li><span class="math inline">\(b_2\)</span> zeigt den Effekt zwischen Agression und CUT, wenn jemand die durchschnittliche Spielzeit mit Videospielen verbringt.</li>
+<li><span class="math inline">\(b_1\)</span> zeigt den Effekt zwischen Agression und Spieldauer, wenn jemand den durchschnittlichen CUT-Wert haben würde.</li>
+</ul>
+</div>
+<div id="grunde-fur-zentrierung" class="section level3 unnumbered">
+<h3>Gründe für Zentrierung</h3>
+<p>Aus Gründen der Interpretierbarkeit, z.B. <span class="math inline">\(y\)</span> = verbale Fähigkeiten eines Kindes, <span class="math inline">\(x_1\)</span> = Vokabular von der Mutter, <span class="math inline">\(x_2\)</span> = Alter des Kindes:</p>
+<ul>
+<li><span class="math inline">\(b_0\)</span> ist nicht sinnvoll interpretierbar, wenn <span class="math inline">\(x_1 = 0\)</span> und <span class="math inline">\(x_2 = 0\)</span></li>
+<li><span class="math inline">\(b_0\)</span> ist aber dann sinnvoll interpretierbar, wenn die Variablen zentriert wurden, denn dann sind die Werte 0 für beide Variablen eben der Mittelwert der zentrierten Variablen!</li>
+<li><span class="math inline">\(b_1\)</span> entspricht der Steigung von <span class="math inline">\(x_1\)</span> unter der Annahme eines durchschnittlichen Wertes von <span class="math inline">\(x_2\)</span>. Liegt keine Moderation vor, wir <span class="math inline">\(b_1\)</span> konsistent über alle Werte der <span class="math inline">\(x_2\)</span>-Verteilung sein.</li>
+<li>Liegt ein Moderationseffekt vor, ist <span class="math inline">\(b_1\)</span> nicht konsistent über die Verteilung der <span class="math inline">\(x_2\)</span>-Werte.</li>
+</ul>
+<p>Aus statistischen Gründen:</p>
+<ul>
+<li>korrelieren <span class="math inline">\(x_1\)</span> und <span class="math inline">\(x_2\)</span> dann kann es sein, dass auch die Interaktion <span class="math inline">\(x_1 \cdot x_2\)</span> hoch korreliert! Wenn zwei Prädiktoren in einem GLM hoch miteinander korrelieren, dann sind sie im wesentlichen redundant. Es liegt eine hohe Multikollinearität vor! Es wird auch schwierig, die <span class="math inline">\(b\)</span>-Werte den jeweiligen Prädiktoren zuzuordnen.</li>
+<li>Bei Zentrierung der Daten kann dieses Problem entschärft werden.</li>
+</ul>
+</div>
+<div id="interpretation-der-bs" class="section level3 unnumbered">
+<h3>Interpretation der <span class="math inline">\(b\)</span>’s</h3>
+<p>Die Zentrierung ermöglicht die Interpretation der Koeffizienten <span class="math inline">\(b_1\)</span> und <span class="math inline">\(b_2\)</span> (lower-order-predictors) auch dann, wenn Null-Werte bei Prädiktoren nicht sinnvoll zu interpretieren sind!</p>
+<p>Die Interpretation von lower-order-predictors ist nur sinnvoll, wenn die higher-order-predictors nicht signifikant sind!</p>
+<p>Bei zentrierten Prädiktoren können die <span class="math inline">\(b\)</span>’s von einzelnen Prädiktoren folgendermaßen interpretiert werden:</p>
+<ol style="list-style-type: decimal">
+<li>sie zeigen den Effekt des jeweiligen Prädiktors beim Mittelwert der Stichprobe.</li>
+<li>sie zeigen den durchschnittlichen Effekt des Prädiktors über die Spannweite der Werte des anderen Prädiktors.</li>
+</ol>
+<p>Bemerkung zu 2: stellen Sie sich vor, dass Sie für jeden möglichen Wert der Spieldauer (VidGames = von 0 bis max(Spieldauer)) jeweils ein lineares Modell rechnen, also ein Modell zur Vorhersage für Aggression durch CUT für die Personen die 0 Std. gespielt haben. Dann dasselbe Modell für jene die 1 Std. gespielt haben, etc.</p>
+<p>Dadurch ergeben sich z.B. <span class="math inline">\(N\)</span> unterschiedliche <span class="math inline">\(b\)</span>’s, wobei jedes davon den Zusammenhang zwischen CUT und Aggression für unterschiedlich lange Spieldauer zeigt. Würde man den Mittelwert dieser <span class="math inline">\(b\)</span>’s berechnen, dann wäre dieser Wert gleich dem <span class="math inline">\(b\)</span>-Wert für CUT (zentriert) wenn dieser im Moderationsmodell gemeinsam mit der zentrierten Spieldauer (VidGames) und der Interaktion berechnet wird!</p>
+</div>
+<div id="interaktion" class="section level3 unnumbered">
+<h3>Interaktion</h3>
+<p>Besteht eine signifikante Interaktion zwischen den beiden Prädiktoren, liegt ein Moderationseffekt vor!</p>
+<p>Ist die Interaktion <span class="math inline">\(CaUnTs \times Vid\_Games\)</span> ein signifikanter Prädiktor für Agression, dann wissen wir zwar dass ein Moderationseffekt vorliegt, aber nicht in welcher Weise! Es könnten folgende Zusammenhänge bestehen:</p>
+<ul>
+<li>Es könnte sein, dass die Spieldauer immer einen negativen Einfluss auf den Aggressions hat, aber diese Beziehung bei höher werdenden CUT noch wesentlich verstärkt wird.</li>
+<li>Es könnte sein, dass bei Personen mit niedrigem CUT die Spielzeit die Agression verringert, aber bei Personen mit hohen CUT die Aggression verstärkt.</li>
+</ul>
+<p>Die Simple Slope Analysis (SSA) bietet bei der Interpretation der Interaktionseffekte eine wesentliche Hilfestellung.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="moderation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referenzen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Modellbildung2.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Korrelationen | Statistik mit R für Fortgeschrittene</title>
+  <meta name="description" content="Statistische Modellbildung - Teil 2">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Korrelationen | Statistik mit R für Fortgeschrittene" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Images/Cover.png" />
+  <meta property="og:description" content="Statistische Modellbildung - Teil 2" />
+  <meta name="github-repo" content="wgruber/Modellbildung2" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Korrelationen | Statistik mit R für Fortgeschrittene" />
+  
+  <meta name="twitter:description" content="Statistische Modellbildung - Teil 2" />
+  <meta name="twitter:image" content="Images/Cover.png" />
+
+<meta name="author" content="Walter Gruber">
+
+
+<meta name="date" content="2019-04-30">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="variabilitat.html">
+<link rel="next" href="losungen.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="vorbemerkung.html"><a href="vorbemerkung.html"><i class="fa fa-check"></i>Vorbemerkung</a></li>
+<li class="chapter" data-level="" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="part"><span><b>Teil I: Variabilitäten und Korrelationen</b></span></li>
+<li class="chapter" data-level="" data-path="variabilitat.html"><a href="variabilitat.html"><i class="fa fa-check"></i>Variabilität</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html"><i class="fa fa-check"></i>Korrelationen</a><ul>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#pearson-produkt-moment-korrelation"><i class="fa fa-check"></i>Pearson Produkt Moment Korrelation</a><ul>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#beispiel-pearson-korrelation"><i class="fa fa-check"></i>Beispiel Pearson Korrelation</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#aufgabe-1"><i class="fa fa-check"></i>Aufgabe 1</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#kausalitat"><i class="fa fa-check"></i>Kausalität</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#partial--semipartialkorrelation"><i class="fa fa-check"></i>Partial- Semipartialkorrelation</a><ul>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#beispiel-partial--semipartialkorrelation"><i class="fa fa-check"></i>Beispiel Partial- Semipartialkorrelation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#korrelationstechniken"><i class="fa fa-check"></i>Korrelationstechniken</a><ul>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#spearman-und-kendall"><i class="fa fa-check"></i>Spearman und Kendall</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#biseriale-korrelation"><i class="fa fa-check"></i>Biseriale Korrelation</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#phi-koeffizient"><i class="fa fa-check"></i>Phi-Koeffizient</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#tetrachorische-korrelation"><i class="fa fa-check"></i>Tetrachorische Korrelation</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#polychorische-korrelation"><i class="fa fa-check"></i>Polychorische Korrelation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="losungen.html"><a href="losungen.html"><i class="fa fa-check"></i>Lösungen</a><ul>
+<li class="chapter" data-level="" data-path="losungen.html"><a href="losungen.html#aufgabe_1"><i class="fa fa-check"></i>Aufgabe_1</a></li>
+<li class="chapter" data-level="" data-path="losungen.html"><a href="losungen.html#aufgabe_2"><i class="fa fa-check"></i>Aufgabe_2</a></li>
+<li class="chapter" data-level="" data-path="losungen.html"><a href="losungen.html#aufgabe_3"><i class="fa fa-check"></i>Aufgabe_3</a></li>
+</ul></li>
+<li class="part"><span><b>Teil II: Multiple lineare Regression</b></span></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i>Multiple Regression</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#definition"><i class="fa fa-check"></i>Definition</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#modellvergleich"><i class="fa fa-check"></i>Modellvergleich</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#aufgabe-mlr-1"><i class="fa fa-check"></i>Aufgabe MLR 1</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#wahl-relevanter-pradiktoren"><i class="fa fa-check"></i>Wahl relevanter Prädiktoren</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#sequentielle-modellbildung"><i class="fa fa-check"></i>Sequentielle Modellbildung</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#modellvergleich-durch-aic"><i class="fa fa-check"></i>Modellvergleich durch AIC</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#kreuzvalidierung"><i class="fa fa-check"></i>Kreuzvalidierung</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#voraussetzungen-mlr"><i class="fa fa-check"></i>Voraussetzungen MLR</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="losungen-1.html"><a href="losungen-1.html"><i class="fa fa-check"></i>Lösungen</a><ul>
+<li class="chapter" data-level="" data-path="losungen-1.html"><a href="losungen-1.html#aufgabe-slr-1-lsg"><i class="fa fa-check"></i>Aufgabe SLR 1 Lsg</a></li>
+<li class="chapter" data-level="" data-path="losungen-1.html"><a href="losungen-1.html#aufgabe-mlr-1-lsg"><i class="fa fa-check"></i>Aufgabe MLR 1 Lsg</a></li>
+</ul></li>
+<li class="part"><span><b>Teil III: Dummy-Codierung</b></span></li>
+<li class="chapter" data-level="" data-path="kategorielle-pradiktoren.html"><a href="kategorielle-pradiktoren.html"><i class="fa fa-check"></i>Kategorielle Prädiktoren</a><ul>
+<li class="chapter" data-level="" data-path="kategorielle-pradiktoren.html"><a href="kategorielle-pradiktoren.html#beispiel-mit-mehrstufigen-kategoriellen-pradiktor"><i class="fa fa-check"></i>Beispiel mit mehrstufigen kategoriellen Prädiktor</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dummy-kodierung.html"><a href="dummy-kodierung.html"><i class="fa fa-check"></i>Dummy Kodierung</a></li>
+<li class="chapter" data-level="" data-path="modellierung-mit-kategoriellen-variablen.html"><a href="modellierung-mit-kategoriellen-variablen.html"><i class="fa fa-check"></i>Modellierung mit kategoriellen Variablen</a></li>
+<li class="part"><span><b>Teil IV: Mediatior-Analyse</b></span></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html"><i class="fa fa-check"></i>Mediation</a><ul>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#konzeptuelle-modell"><i class="fa fa-check"></i>Konzeptuelle Modell</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#effektgroen-der-mediation"><i class="fa fa-check"></i>Effektgrößen der Mediation</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#fallbeispiel"><i class="fa fa-check"></i>Fallbeispiel</a><ul>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#regressionsanalyse"><i class="fa fa-check"></i>Regressionsanalyse</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Teil V: Moderator-Analyse</b></span></li>
+<li class="chapter" data-level="" data-path="moderation.html"><a href="moderation.html"><i class="fa fa-check"></i>Moderation</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html"><i class="fa fa-check"></i>Konzeptuelles Modell</a><ul>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#formale-beschreibung-des-modells"><i class="fa fa-check"></i>Formale Beschreibung des Modells</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#zentrierung-der-variablen"><i class="fa fa-check"></i>Zentrierung der Variablen</a><ul>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#eigenschaften-der-zentrierung"><i class="fa fa-check"></i>Eigenschaften der Zentrierung</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#grunde-fur-zentrierung"><i class="fa fa-check"></i>Gründe für Zentrierung</a></li>
+<li><a href="konzeptuelles-modell.html#interpretation-der-bs">Interpretation der <span class="math inline">\(b\)</span>’s</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#interaktion"><i class="fa fa-check"></i>Interaktion</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Teil VI: Analysis of Covariance</b></span></li>
+<li class="chapter" data-level="" data-path="motivation-1.html"><a href="motivation-1.html"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html"><i class="fa fa-check"></i>Kovarianzanalyse</a><ul>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#voraussetzungen"><i class="fa fa-check"></i>Voraussetzungen</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#berechnung-einer-ancova"><i class="fa fa-check"></i>Berechnung einer ANCOVA</a><ul>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#deskriptive-graphisch-und-homogenitat"><i class="fa fa-check"></i>Deskriptive, graphisch und Homogenität</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#unabhangigkeit"><i class="fa fa-check"></i>Unabhängigkeit</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#berechnung-ancova"><i class="fa fa-check"></i>Berechnung ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#interpretation-ancova"><i class="fa fa-check"></i>Interpretation ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#geplante-kontraste"><i class="fa fa-check"></i>Geplante Kontraste</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#interpretation-kovariate"><i class="fa fa-check"></i>Interpretation Kovariate</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#post-hoc-tests"><i class="fa fa-check"></i>Post hoc Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#nutzliche-graphen"><i class="fa fa-check"></i>Nützliche Graphen</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#homogenitat-der-steigung"><i class="fa fa-check"></i>Homogenität der Steigung</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#bericht-der-ergebnisse"><i class="fa fa-check"></i>Bericht der Ergebnisse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referenzen.html"><a href="referenzen.html"><i class="fa fa-check"></i>Referenzen</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistik mit R für Fortgeschrittene</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="korrelationen" class="section level1 unnumbered">
+<h1>Korrelationen</h1>
+<p>Korrelationen sind ein Maß für den statistischen Zusammenhang zweier Datenreihen. Ein Korrelationsmaß impliziert daher auch stochastische Abhängigkeit - ohne jedoch auf kausale Zusammenhänge schließen zu können.</p>
+<p>Korrelationen werden i.A. der <em>deskriptiven Statistik</em> zugeordnet. Durch eine Reihe von Verfahren, wie z.B. partielle Korrelation, multiple Korrelation oder Faktorenanalyse, kann die einfache Korrelation zweier Variablen auf Beziehungen zwischen zwei Variablen unter Berücksichtigung des Einflusses weiterer Variablen werden.</p>
+<p>Korrelationen sind ein unverzichtbares Werkzeug für viele Forschungsgebiete und stehen häufig am Beginn jeder weiteren Datenanalyse, wie z.B.:</p>
+<ul>
+<li>multiple Regression</li>
+<li>Faktorenanalyse</li>
+<li>Clusteranalyse</li>
+<li>Mediator- und Moderator-Analyse</li>
+</ul>
+<div id="pearson-produkt-moment-korrelation" class="section level2 unnumbered">
+<h2>Pearson Produkt Moment Korrelation</h2>
+<p>Die häufigst verwendete Form der Korrelationsberechnung ist die Pearson-Produkt-Moment Korrelation. Bei dieser Methode wird die Beziehung zwischen zwei metrische Variablen (bzw. eine metrische und eine dichotome Variable) als Kennzahl mit dem Wertebereich <span class="math inline">\(r \in [-1,1]\)</span> berechnet.</p>
+<p>Die Berechnung einer Korrelation ist für sich gesehen an keine Voraussetzungen gebunden. Hingegen fordern eine sinnvolle Interpretationen der berechneten Kennwerte und vor allem die statistischen Tests von Korrelationskoeffizienten folgende inhaltliche und formale Überlegungen:</p>
+<ul>
+<li><strong>Skalenniveau</strong>: der Korrelationskoeffizient liefert sinnvoll interpretierbare Ergebnisse wenn die Variablen mindestens intervallskaliert sind (oder für eine intervallskalierte und eine dichotome Variable<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>).</li>
+</ul>
+<ul>
+<li><strong>Endliche Varianz (und Kovarianz)</strong>: bei Erhöhung des Stichprobenumfangs darf sich die Variabilität nicht immer weiter erhöhen, sondern sollte sich stabilisieren. Bei Variablen, die bivariat normalverteilt sind, ist diese Voraussetzung automatisch gegeben. Der Korrelationskoeffizient ist damit auch gleichzeitig der <em>Maximum-Likelyhood Schäzter</em> des Korrelationskoeffizienten in der Grundgesamtheit (asymptotisch <em>erwartungstreu</em> und <em>effizient</em>).</li>
+</ul>
+<center>
+<div class="figure">
+<img src="Images/EndlicheVarianz.JPG" alt="Abbildung 5: Endliche Varianz" style="width:40.0%" />
+<p class="caption"><strong>Abbildung 5</strong>: Endliche Varianz<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+</div>
+</center>
+<ul>
+<li><strong>Linearität</strong>: die Korrelation ist ein Maß für <strong>lineare Abhängigkeit</strong>. Abweichungen der Daten von dieser Linearitätsannahme führen zu einer mehr oder weniger starken Verzerrung des Korrelationskoeffizienten, wie in den nachfolgenden Beispielen gezeigt wird:</li>
+</ul>
+<center>
+<div class="figure">
+<img src="Images/Linearitaet.JPG" alt="Abbildung 6: Linearität und Korrelation" style="width:60.0%" />
+<p class="caption"><strong>Abbildung 6</strong>: Linearität und Korrelation</p>
+</div>
+</center>
+<p>Vor allem zur Prüfung der Signifikanz einer Korrelation sollem man weitere Voraussetzungen überprüfen:</p>
+<ul>
+<li><p><strong>Normalverteilung</strong>: Korrelation berechnen sich aus dem Kreuzprodukt von z-standardisierten Werten zweier Variablen. Für diese Berechnung wird der Mittelwert als zentraler Kennwert verwendet, welcher nur dann ein “sinnvoller” Kennwert für die Daten ist, wenn diese zumindest symmetrisch und im besten Fall normalverteilt sind.</p></li>
+<li><p><strong>Homoskedastizität</strong>: bedeutet gleichmäßige Streuung der Daten zweier (exogene und endogene) Variablen. Sind die exogene und die endogene Variable<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> nicht mehr identisch verteilt, d.h. sie ändern ihre Variablität mit zu/abnehmenden Werten einer Variablen, spricht man von <strong>Herteroskedastizität</strong>. Das hat zur Folge hat, dass die KQ<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>-Schätzer nicht mehr effizient sind und der Standardfehler der Koeffizienten verzerrt und nicht konsistent wird.</p></li>
+</ul>
+<center>
+<div class="figure">
+<img src="Images/Variabilitaet.JPG" alt="Abbildung 7: Variablität(einschränkung) und Korrelation" style="width:30.0%" />
+<p class="caption"><strong>Abbildung 7</strong>: Variablität(einschränkung) und Korrelation</p>
+</div>
+</center>
+<ul>
+<li><strong>KEINE Ausreißer</strong>: der Korrelationskoeffizient ist nicht robust gegenüber Ausreißern. Dies bedeutet, dass Ausreißer den Korrelationskoeffizienten sowohl künstlich erhöhen als auch künstlich senken können.</li>
+</ul>
+<center>
+<div class="figure">
+<img src="Images/Ausreisser.JPG" alt="Abbildung 8: Einfluss von Ausreißer bei linearer Modellbildung" style="width:30.0%" />
+<p class="caption"><strong>Abbildung 8</strong>: Einfluss von Ausreißer bei linearer Modellbildung</p>
+</div>
+</center>
+<ul>
+<li><strong>KEINE Kluster</strong>: es kann vorkommen, dass zwei oder mehr Gruppen eine Korrelation zeigen, die eigentlich getrennt untersucht werden müssten. Dieses Problem wird oft auch mittels <strong>partieller Korrelation</strong> umgangen, bei der mögliche Drittvariablen statistisch konstant gehalten werden.</li>
+</ul>
+<center>
+<div class="figure">
+<img src="Images/Cluster.JPG" alt="Abbildung 9: Kluster und deren Auswirkung bei linearer Modellierung" style="width:30.0%" />
+<p class="caption"><strong>Abbildung 9</strong>: Kluster und deren Auswirkung bei linearer Modellierung</p>
+</div>
+</center>
+<div id="beispiel-pearson-korrelation" class="section level3 unnumbered">
+<h3>Beispiel Pearson Korrelation</h3>
+<p>Im folgenden, fiktiven Beispiel werden die Zusammenhänge von Klausurperformanz (<em>EP</em>), Intelligenz (<em>IQ</em>), Vorbereitungszeit (<em>VZ</em>) und Prüfungsangst (<em>PA</em>) korreliert. Der Code zum Laden der Daten sowie die Daten selbst sind in nachfolgender Ausgabe/Tabelle dargestellt:</p>
+<pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">load</span>(<span class="st">&quot;Daten/CorrBsp1.Rda&quot;</span>)</code></pre>
+<center>
+<table style="width:31%;">
+<colgroup>
+<col width="6%" />
+<col width="8%" />
+<col width="6%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">EP</th>
+<th align="center">IQ</th>
+<th align="center">VZ</th>
+<th align="center">PA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">74</td>
+<td align="center">109</td>
+<td align="center">16</td>
+<td align="center">117</td>
+</tr>
+<tr class="even">
+<td align="center">67</td>
+<td align="center">96</td>
+<td align="center">18</td>
+<td align="center">122</td>
+</tr>
+<tr class="odd">
+<td align="center">72</td>
+<td align="center">106</td>
+<td align="center">13</td>
+<td align="center">108</td>
+</tr>
+<tr class="even">
+<td align="center">66</td>
+<td align="center">89</td>
+<td align="center">12</td>
+<td align="center">97</td>
+</tr>
+<tr class="odd">
+<td align="center">63</td>
+<td align="center">93</td>
+<td align="center">14</td>
+<td align="center">98</td>
+</tr>
+<tr class="even">
+<td align="center">67</td>
+<td align="center">102</td>
+<td align="center">15</td>
+<td align="center">106</td>
+</tr>
+</tbody>
+</table>
+</center>
+</div>
+<div id="aufgabe-1" class="section level3 unnumbered">
+<h3>Aufgabe 1</h3>
+<p>Kopiere den obigen Code zum Laden der Daten in eine R-Script-Datei. Führen nun folgende Aufgaben aus:</p>
+<ol style="list-style-type: decimal">
+<li>Ermittle mit einer geeigneten Funktion die Korrelationen und prüfe diese auch auf statistische Signifikanz.</li>
+<li>Zeichne einen Korrelationsplot mit dem Paket <em>corrplot</em>.</li>
+<li>Berechne die Teststärke der Korrelation <span class="math inline">\(r(IQ, EP)\)</span> (<em>Hinweis</em>: verwende die Funktion <em>pwr.r.test</em> des Pakets <em>pwr</em>).</li>
+<li>Verwende diese Funktion (<em>pwr.r.test</em>) um für eine Korrelation <span class="math inline">\(r(x,y) = 0.21\)</span> den optimalen Stichprobenumfang zu berechnen.</li>
+<li>Prüfe mit Hilfe der Funktion <em>mvn</em> aus dem Paket <em>MVN</em> die Voraussetzung der bivariaten Normalverteilung der Variablenpaare (EP,IQ), (EP, VZ) und (EP,PA).</li>
+<li>Berechne die durchschnittliche Korrelation von <span class="math inline">\(r_1(EP,IQ)\)</span>, <span class="math inline">\(r_1(EP,VZ)\)</span> und <span class="math inline">\(r_1(EP,PA)\)</span>. Beachte, dass zur Berechnung von durchschnittlichen Korrelationswerten eine Fisher-Z-Transformation notwendig ist (<em>Hinweis</em>: verwende die <em>fisherz()</em> und <em>fisherz2r()</em> des Pakets <em>psych</em>).</li>
+<li>Prüfe, ob der Unterschied der Korrelationskoeffizienten <span class="math inline">\(r(EP,IQ) = 0.47\)</span> und <span class="math inline">\(r(EP,VZ) = 0.36\)</span>
+statistisch signifikant ist. Verwende die Funktion <em>paired.r()</em> aus dem Paket <em>psych</em>.</li>
+</ol>
+<p><a href="losungen.html#aufgabe_1">Lösung Aufgabe 1</a></p>
+</div>
+</div>
+<div id="kausalitat" class="section level2 unnumbered">
+<h2>Kausalität</h2>
+<p>Eine relevante (statistisch signifikante) Korrelation liefert keinen Beleg für die Kausalität. Vor allem in der Medizin und Psychologie suchen Forscher nach Kriterien für Kausalität. Es existieren mehrere Ansätze zur Erklärung der Ursächlichkeit einer Korrelation (siehe z.B. die 9 <a href="https://de.wikipedia.org/wiki/%C3%84tiologie_(Medizin)" target="_blank">Bradford-Hill-Kriterien</a>).</p>
+</div>
+<div id="partial--semipartialkorrelation" class="section level2 unnumbered">
+<h2>Partial- Semipartialkorrelation</h2>
+<p>Die <em>partielle Korrelation</em> ist die bivariate Korrelation zweier Variablen, welche mittels linearer Regression vom Einfluss einer Drittvariablen bereinigt wurden.</p>
+<p>Eine <em>Semipartialkorrelation</em> ist ein Zusammenhang zwischen einer residualisierten und einer nicht-residualisierten Variable.</p>
+<center>
+<div class="figure">
+<img src="Images/PartialSemipartialkorrelation.png" alt="Abbildung 10: Partial und Semipartialkorrelation in einem Venn-Diagramm dargestellt" style="width:80.0%" />
+<p class="caption"><strong>Abbildung 10</strong>: Partial und Semipartialkorrelation in einem Venn-Diagramm dargestellt</p>
+</div>
+</center>
+<div id="beispiel-partial--semipartialkorrelation" class="section level3 unnumbered">
+<h3>Beispiel Partial- Semipartialkorrelation</h3>
+<p>Folgendes Beispiel verdeutlicht die Wirkungsweise einer Partial- und Semipartialkorrelation. Kopier den folgenden Code in ein R-Script und führe diesen dann aus. Diskutiere die Ergebnisse.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    examData  &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;Daten/Exam Anxiety.dat&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)
+    examData2 &lt;-<span class="st"> </span>examData[, <span class="kw">c</span>(<span class="st">&quot;Exam&quot;</span>, <span class="st">&quot;Anxiety&quot;</span>, <span class="st">&quot;Revise&quot;</span>)]
+    
+    <span class="co"># Normale Korrelation</span>
+      pander<span class="op">::</span><span class="kw">pander</span>(<span class="kw">round</span>(<span class="kw">cor</span>(examData2),<span class="dv">2</span>))
+    <span class="co"># Partielle Korrelation</span>
+      <span class="co"># library(ppcor)</span>
+      pander<span class="op">::</span><span class="kw">pander</span>(<span class="kw">round</span>(ppcor<span class="op">::</span><span class="kw">pcor</span>(examData2)<span class="op">$</span>estimate,<span class="dv">2</span>))
+    <span class="co"># Partialkorrelation mit Linearen Modell    </span>
+      Mod1            &lt;-<span class="st"> </span><span class="kw">lm</span>(Exam <span class="op">~</span><span class="st"> </span>Revise, <span class="dt">data =</span> examData2)
+      Res_Exam_Rev    &lt;-<span class="st"> </span><span class="kw">residuals</span>(Mod1)    
+      Mod2            &lt;-<span class="st"> </span><span class="kw">lm</span>(Anxiety <span class="op">~</span><span class="st"> </span>Revise, <span class="dt">data =</span> examData2)
+      Res_Anx_Rev     &lt;-<span class="st"> </span><span class="kw">residuals</span>(Mod2)    
+      pr_Exam_Anx_Rev &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cor</span>(Res_Exam_Rev, Res_Anx_Rev), <span class="dv">2</span>)</code></pre>
+<p>In diesem Code wurde zur Veranschaulichung der Wirkungsweise einer Partial/Semipartialkorrelation eine lineare Regression verwendet. Was dabei genau passiert sei durch nachfolgende Abbildung nochmals veranschaulicht:</p>
+<center>
+<div class="figure">
+<img src="Images/PartialSemipartialLineareRegr.png" alt="Abbildung 11: Partialkorrelation als lineares Regressionsmodell. Für die Beziehung Examperformance und Exam Anxiety soll der Effekt von Revisiotime berücksichtigt werden. Die roten Linien entsprechen den Residuen der Regression Revisiontime mit Exam Performance. Die blauen den Residuen der Regression Revisiontime mit Exam Anxiety. Der linke obere Graph stellt die Beziehung von Anxiety und Examperfomance bereinigt von Revisiontime dar. Details siehe nachfolgendemn Text." style="width:100.0%" />
+<p class="caption"><strong>Abbildung 11</strong>: Partialkorrelation als lineares Regressionsmodell. Für die Beziehung Examperformance und Exam Anxiety soll der Effekt von Revisiotime berücksichtigt werden. Die roten Linien entsprechen den Residuen der Regression Revisiontime mit Exam Performance. Die blauen den Residuen der Regression Revisiontime mit Exam Anxiety. Der linke obere Graph stellt die Beziehung von Anxiety und Examperfomance bereinigt von Revisiontime dar. Details siehe nachfolgendemn Text.</p>
+</div>
+</center>
+<ol style="list-style-type: decimal">
+<li>Examperformance wird durch Revisiontime vorhergesagt. Die Residuen sind jener Anteil an Variabilität der Examperformanz, der nicht durch Revsiontime vorhergesagt werden können<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. Diese über die durch Revisiontime erklärbare Variabilität von Examperformance kann zurückgeführt werden auf:
+<ul>
+<li>andere erklärende Merkmale, bzw.</li>
+<li>Messfehler</li>
+</ul></li>
+<li>Anxiety wird durch Revisiontime vorhergesagt. Auch hier gilt wieder, dass die Residuen der Variabilität von Anxiete, bereinigt von Revisiontime entsprechen.</li>
+<li>Die Korrelation der Residuen entspricht nun genau der Partialkorrelation <span class="math inline">\(r_{Y1\cdot2}\)</span></li>
+</ol>
+<p>Bei der Semipartialkorrelation bereinigt man nun nicht beide Variablen, sonder eben nur einen Teil (z.B. wird nur die Anxiety von Revisiontime bereiningt).</p>
+<p>Kopiere den nachfolgenden Code in ein R-Script und führe diesen aus. Diskutiere die Ergebnisse!</p>
+<pre class="sourceCode r"><code class="sourceCode r">    <span class="co"># Semipartielle Korrelation</span>
+      pander<span class="op">::</span><span class="kw">pander</span>(<span class="kw">round</span>(ppcor<span class="op">::</span><span class="kw">spcor</span>(examData2)<span class="op">$</span>estimate,<span class="dv">2</span>))
+    <span class="co"># Semipartialkorrelation mit Linearen Modell    </span>
+      sr_Exam_Anx_Rev &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cor</span>(examData2<span class="op">$</span>Exam, Res_Anx_Rev), <span class="dv">2</span>)</code></pre>
+</div>
+</div>
+<div id="korrelationstechniken" class="section level2 unnumbered">
+<h2>Korrelationstechniken</h2>
+<p>Neben dem Pearson-Produkt-Moment-Korrelationskoeffizienten <span class="math inline">\(r\)</span> existieren noch etliche weitere Korrelationskoeffizienten und Zusammenhangsmaße. Die meisten hiervon sind Sonderfälle der Pearson-Produkt-Moment-Korrelation. Nachfolgende Tabelle zeigt, wann welcher Koeffizient berechnet werden soll. Die Verwendung unterschiedlicher Korrelationsberechnungen ist i.A. abhängig vom Skalenniveau der beteiligten Variablen.</p>
+<center>
+<div class="figure">
+<img src="Images/Korrelationsarten.JPG" alt="Abbildung 12: verschiedene Korrelationskoeffizienten" style="width:100.0%" />
+<p class="caption"><strong>Abbildung 12</strong>: verschiedene Korrelationskoeffizienten</p>
+</div>
+</center>
+<div id="spearman-und-kendall" class="section level3 unnumbered">
+<h3>Spearman und Kendall</h3>
+<p>Für die Berechnung des Pearson-Korrelationskoeffizienten (<span class="math inline">\(r\)</span>) ist das Vorliegen von kontinuierlichen Variablen erforderlich. Bei <strong>ordinalskalierten Daten</strong> wird eine der folgenden Rangkorrelation berechnet:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Spearman</strong> <span class="math inline">\(r_s\)</span>: Spearman-Rangkorrelation setzt voraus, dass Ränge gleichabständig sind<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> und keine Ausreißer vorliegen.</li>
+<li><strong>Kendall</strong> <span class="math inline">\(\tau\)</span>: Ränge müssen nicht gleichabständig sein und Ausreißer beeinflussen diesen Korrelationskoeffizienten weit weniger als z.B. den den <span class="math inline">\(r_s\)</span>.</li>
+</ol>
+<p>Bei den Kendall-Koeffizienten unterscheidet man noch drei unterschiedliche Maße<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>:</p>
+<ul>
+<li>Kendalls <span class="math inline">\(\tau_a\)</span>: Rangbindungen werden nicht berücksichtigt.</li>
+<li>Kendalls <span class="math inline">\(\tau_b\)</span>: Rangbindungen werden berücksichtigt.</li>
+<li>Kendalls <span class="math inline">\(\tau_c\)</span>: für nicht quadratische Kontingeztafeln.</li>
+</ul>
+<p>Zur Veranschaulichung der verschiedenen rangbasierten Korrelationsmaße sind folgende Aufgaben zu bearbeiten:</p>
+<ol style="list-style-type: decimal">
+<li>Berechne zuerst nochmal die Pearson-Korrelation <span class="math inline">\(r(EP,IQ)\)</span> des bereits geladenen Datensatzes
+und rechne dann eine Spearman Korrelation. Verwende nun die Funktion <em>cor()</em> des Basispakets. Vergleiche die Ergebnisse!</li>
+<li>Vererwende die Funktion <em>rank()</em> um den Variablen <em>EP</em> und <em>IQ</em> Ränge zuzuordnen. Speichere die Ergebnisse in <em>EP_Ranks</em> und <em>IQ_Ranks</em> und berechnen Sie anschließend eine Pearson-Korrelation. Vergleiche die Ergebnisse mit dem vorherigen Pearson-<span class="math inline">\(r\)</span>.</li>
+</ol>
+<p><a href="losungen.html#aufgabe_2">Lösung Aufgabe 2</a></p>
+</div>
+<div id="biseriale-korrelation" class="section level3 unnumbered">
+<h3>Biseriale Korrelation</h3>
+<p>Biseriale Korrelationen kommen zur Anwendung, wenn ein Merkmal <strong>Intervall</strong>- oder <strong>Ordinalskaliert</strong> und das zweite Merkmal <strong>dichotom Nominalskaliert</strong> ist. Für das Nominalskalierte Merkmal unterscheidet man noch zwischen:</p>
+<ul>
+<li><strong>Echt dichotome Variable</strong>: natürlich vorkommende Gruppenteilung wie z.B. wahr/falsch, männlich/weiblich, etc. Der Zusammenhang einer solchen mit einer intervallskalierten Variablen wird durch die <strong>punktbiseriale Korrelation</strong> beschrieben.</li>
+<li><strong>Künstlich dichotome Variable</strong>: wird eine kontinuierliche Variable in zwei Gruppen aufgeteilt, wie z.B. zwei Altersgruppen (jung, alt), oder hohe Leistungsfähigkeit vs. niedrige Leistungsfähigkeit, etc., dann spricht man von einer künstlich dichotomen Variablen. Zusammenhänge dieser mit einer intervallskalierten Variablen werden durch die <strong>biseriale Korrelation</strong> beschrieben.</li>
+</ul>
+<p>Kopier den folgenden Code in dein R-Script und bearbeite folgende Aufgabenstellungen:</p>
+<ol style="list-style-type: decimal">
+<li>Verwende die Funktion <em>dicho()</em> des Pakets sjmisc um alle Variablen über den Median zu dichotomisieren (<em>Hinweise</em>: ersetze die <em>XXX</em> im Code mit den entsprechenden Werten).</li>
+<li>Berechne die biseriale Korrelation der Variablen <em>IQ</em> und der Exam-Performance-Gruppe (<em>EP_Grp</em>).</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">      <span class="co"># Zuerst wird die Examensperformanz Ã¼ber den Median in zwei Gruppen geteilt</span>
+      <span class="co"># library(sjmisc)</span>
+      DF_Biserial &lt;-<span class="st"> </span>DF_Korr[<span class="kw">order</span>(EP), ]
+      DF_Biserial &lt;-<span class="st"> </span>sjmisc<span class="op">::</span><span class="kw">dicho</span>(XXX,
+                                   <span class="dt">dich.by =</span> <span class="st">&quot;XXX&quot;</span>, 
+                                   <span class="dt">as.num =</span> <span class="ot">FALSE</span>, 
+                                   <span class="dt">var.label =</span> <span class="st">&quot;Grp&quot;</span>,
+                                   <span class="dt">val.labels =</span> <span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;high&quot;</span>), 
+                                   <span class="dt">append =</span> <span class="ot">TRUE</span>, 
+                                   <span class="dt">suffix =</span> <span class="st">&quot;_Grp&quot;</span>)
+
+      <span class="kw">biserial</span>(<span class="dt">x =</span> XXX, <span class="dt">y =</span> XXX)</code></pre>
+</div>
+<div id="phi-koeffizient" class="section level3 unnumbered">
+<h3>Phi-Koeffizient</h3>
+<p>Korrelationen zwischen echt-dichotomen Variablen (männlich/weiblich, etc.) können mit dem Phi-Koeffizienten berechnet werden. Um den Phi-Koeffizienten zu berechnen, werden Häufigkeiten in Form einer Vier-Felder-Tafel benötigt.</p>
+<center>
+<div class="figure">
+<img src="Images/PHIKoeffizient.JPG" alt="Abbildung 13: Beispiel und Berechnung des Phi-Koeffizienten" style="width:70.0%" />
+<p class="caption"><strong>Abbildung 13</strong>: Beispiel und Berechnung des Phi-Koeffizienten</p>
+</div>
+</center>
+<p>Folgendes einfaches Beispiel zeigt die Berechnung des Phi-Koeffizienten sowie dessen Äquivalenz mit einer Pearson-Korrelation:</p>
+<pre class="sourceCode r"><code class="sourceCode r">      Geschlecht &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,  <span class="dv">1</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">1</span>,  <span class="dv">0</span>,  <span class="dv">1</span>,  <span class="dv">1</span>,  <span class="dv">1</span>)
+      Bestanden  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,  <span class="dv">1</span>,  <span class="dv">1</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">1</span>,  <span class="dv">1</span>,  <span class="dv">1</span>)
+      
+      VFT        &lt;-<span class="st"> </span><span class="kw">table</span>(Geschlecht, Bestanden)
+      pander<span class="op">::</span><span class="kw">pander</span>(VFT)
+      
+      <span class="kw">cor</span>(Geschlecht, Bestanden)
+      
+      <span class="kw">phi</span>(VFT)
+      CST &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(VFT, <span class="dt">correct =</span> <span class="ot">FALSE</span>)
+      pander<span class="op">::</span><span class="kw">pander</span>(CST)
+      <span class="kw">qchisq</span>(<span class="dt">p=</span>.<span class="dv">95</span>,<span class="dt">df=</span><span class="dv">1</span>) <span class="co"># kritischer Chi-Square-Wert bei einem Freiheitsgrad und Alpha = 5%</span></code></pre>
+<p>Die Anzahl der Freiheitsgrade beträgt in diesem Fall immer eins, da wir es mit zwei dichotomen Merkmalen zu tun haben.</p>
+</div>
+<div id="tetrachorische-korrelation" class="section level3 unnumbered">
+<h3>Tetrachorische Korrelation</h3>
+<p>Soll der Zusammenhang zwischen zwei künstlich-dichotomen Variablen berechnet werden, die aus stetigen, normalverteilten latente Variablen abgeleitet wurden (z.B. Intelligenz und Examperformanz in Statistik), verwendet man die tetrachorische Korrelation.</p>
+<p>Auf Details zur Berechnung der Kenngröße wird hier verzichtet. Grundlage ist wiederum eine Vier-Felder-Tafel (wie beim Phi-Koeffizienten), wobei die tetrachorische Korrelation nicht so stark von der Randverteilung der Vier-Felder-Tafel abhängt. Zu beachten ist jedoch, dass die Zellbesetzung von b und c nicht 0 sein darf! Nachfolgendes Beispiel sollte die Anwendung der tetrachorischen Korrelation verdeutlichen. Lade dazu den folgenden Code und führe diesen Zeilenweise aus. Diskutiere die Ergebnisse!</p>
+<pre class="sourceCode r"><code class="sourceCode r">      <span class="co"># library (psych) </span>
+      <span class="kw">load</span>(<span class="st">&quot;Daten/TetraCorrBsp.Rda&quot;</span>)
+      TCC_Res &lt;-<span class="st"> </span><span class="kw">tetrachoric</span>(DF_TCC)
+      <span class="kw">pander</span>(TCC_Res<span class="op">$</span>rho)</code></pre>
+</div>
+<div id="polychorische-korrelation" class="section level3 unnumbered">
+<h3>Polychorische Korrelation</h3>
+<p>um Korrelationen zwischen ordinalen Daten zu beschreiben, verwendet man die polychorische Korrelation. Dabei schätzt ma die Korrelation zwischen zwei (ordinalen) Merkmalen, die in mehr als zwei geordnete Kategorien unterteilt sind. Die Berechnung ist überaus komplex und wird hier nicht dargestellt.</p>
+<p>Polychorische Korrelationen werden unter anderem verwendet, um konfirmatorische Faktorenanalysen mit ordinalen Daten zu berechnen. Es ist mit Programmen wie R, AMOS, LISREL oder MPlus auch möglich, ex ploratorische Faktorenanalysen mit polychorischen Korrelationen durchzuführen.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>dieser Spezialfall ist unter biserialer, bzw. punktbiserialer Korrelation bekannt.<a href="korrelationen.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p><a href="https://matheguru.com/stochastik/korrelation-korrelationskoeffizient.html" target="_blank">die Abbildungen wurden der Website Matheguru entnommen</a><a href="korrelationen.html#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>eine <em>exogene</em> Variable ist eine erklärende Variable, die mit der Störgröße unkorreliert ist (sogenannte Exogenität). Eine <em>endogene</em> Variable in einem multiplen Regressionsmodell ist eine erklärende Variable, die entweder aufgrund einer ausgelassenen Variablen, eines Messfehlers oder wegen Simulatanität mit der Störgröße korreliert ist (sogenannte Endogenität).<a href="korrelationen.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>KQ steht für kleinste Quadrate (auch MLS - Minimum Least Square, oder OLS - Ordinary Least Square) und ist eine einfache Schätzung über minimierte quadradische Abstände der Residuen (Fehler) zu einem Modell (Mittelwert, Gerade, etc.)<a href="korrelationen.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>anderenfalls würden ja alle beobachteten Werte auf der Gerade liegen!<a href="korrelationen.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>diese Voraussetzung ist eher selten erfüllt. Sie ist gleichzusetzen mit der Annahme, dass in einem Skirennen der erste, zweite, dritte, etc. Platz genaus die gleichen Zeitabstände aufweisen. Ist diese nicht gegeben, sollte Kendalls <span class="math inline">\(\tau\)</span> verwendet werden.<a href="korrelationen.html#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>Details zu den unterschiedlichen Kendalls-<span class="math inline">\(\tau\)</span> sind der Literatur zu entnehmen. Weitere Betrachtungen beziehen sich auf das Kendalls-<span class="math inline">\(\tau_b\)</span><a href="korrelationen.html#fnref7" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="variabilitat.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="losungen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Modellbildung2.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

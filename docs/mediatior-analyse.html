@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Mediatior-Analyse | Statistik mit R für Fortgeschrittene</title>
+  <meta name="description" content="Statistische Modellbildung - Teil 2">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Mediatior-Analyse | Statistik mit R für Fortgeschrittene" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Images/Cover.png" />
+  <meta property="og:description" content="Statistische Modellbildung - Teil 2" />
+  <meta name="github-repo" content="wgruber/Modellbildung2" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Mediatior-Analyse | Statistik mit R für Fortgeschrittene" />
+  
+  <meta name="twitter:description" content="Statistische Modellbildung - Teil 2" />
+  <meta name="twitter:image" content="Images/Cover.png" />
+
+<meta name="author" content="Walter Gruber">
+
+
+<meta name="date" content="2019-04-02">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="kategorielle-variablen.html">
+<link rel="next" href="moderator-analyse.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.5/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="vorbemerkung.html"><a href="vorbemerkung.html"><i class="fa fa-check"></i>Vorbemerkung</a></li>
+<li class="chapter" data-level="" data-path="modellbildung.html"><a href="modellbildung.html"><i class="fa fa-check"></i>Modellbildung</a></li>
+<li class="part"><span><b>Teil I: Wiederholung Modellbildung I</b></span></li>
+<li class="chapter" data-level="" data-path="variabilitat.html"><a href="variabilitat.html"><i class="fa fa-check"></i>Variabilität</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html"><i class="fa fa-check"></i>Korrelationen</a><ul>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#partial-und-semipartialkorrelation"><i class="fa fa-check"></i>Partial und Semipartialkorrelation</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#korrelationstechniken"><i class="fa fa-check"></i>Korrelationstechniken</a></li>
+</ul></li>
+<li class="part"><span><b>Teil II: Multiple lineare Regression</b></span></li>
+<li class="chapter" data-level="" data-path="warmup-mlr.html"><a href="warmup-mlr.html"><i class="fa fa-check"></i>WarmUp MLR</a></li>
+<li class="chapter" data-level="" data-path="kategorielle-variablen.html"><a href="kategorielle-variablen.html"><i class="fa fa-check"></i>Kategorielle Variablen</a></li>
+<li class="chapter" data-level="" data-path="mediatior-analyse.html"><a href="mediatior-analyse.html"><i class="fa fa-check"></i>Mediatior-Analyse</a><ul>
+<li class="chapter" data-level="" data-path="mediatior-analyse.html"><a href="mediatior-analyse.html#fallbeispiel-1"><i class="fa fa-check"></i>Fallbeispiel 1</a></li>
+<li class="chapter" data-level="" data-path="mediatior-analyse.html"><a href="mediatior-analyse.html#fallbeispiel-2"><i class="fa fa-check"></i>Fallbeispiel 2</a><ul>
+<li class="chapter" data-level="0.0.1" data-path="mediatior-analyse.html"><a href="mediatior-analyse.html#causal-mediation-analysis"><i class="fa fa-check"></i><b>0.0.1</b> Causal Mediation Analysis</a></li>
+<li class="chapter" data-level="0.0.2" data-path="mediatior-analyse.html"><a href="mediatior-analyse.html#lavaan-mediation-analysis"><i class="fa fa-check"></i><b>0.0.2</b> Lavaan Mediation Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="moderator-analyse.html"><a href="moderator-analyse.html"><i class="fa fa-check"></i>Moderator-Analyse</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistik mit R für Fortgeschrittene</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mediatior-analyse" class="section level1 unnumbered">
+<h1>Mediatior-Analyse</h1>
+<p>Eine häufig verwendete Form der linearen Modellierung findet man in der Theorieentwicklung und Theorieprüfung. Eine dieser Modellansätze ist bekannt als <em>Mediatior-Analyse</em>. Bei dieser Form der Analyse wird untersucht, inwieweit eine Beziehung zwischen zwei Merkmalen über ein drittes Merkmal erklärt werden kann, bzw. überhaupt erst zustande kommt. Folgendes Beispiel soll die Bedeutung eines Mediators verdeutlichen.</p>
+<blockquote>
+<p>Der Zusammenhang zwischen <em>Konzentration</em> <span class="math inline">\(X\)</span> (UV) und der <em>Intelligenz</em> <span class="math inline">\(Y\)</span> (AV) soll genauer untersucht werden. Auch wenn es zwischen diesen Merkmalen einen mehr oder weniger starken/schwachen Zusammenhang geben sollte, ist es es naheliegend anzunehmen, dass zumindest ein weiteres Merkmal diese Beziehung wesentlich beeinflusst. Der Literatur ist zu entnehmen, dass die exekutive Funktion <em>Koordination</em> sowohl hinsichtlich der Konzentration als auch der Intelligenz eine wichtige Rolle spielt. Es soll daher die Hypothese geprüft werden, dass dieses Merkmal den Zusammenhang zwischen Konzentration und Intelligenz vermittelt - also mediiert. Mittels einer Mediatior-Analyse sollte daher diese Theorie geprüft werden. Wir bezeichnen das Merkmal Koordination mit <span class="math inline">\(M\)</span>.</p>
+</blockquote>
+<p>Es gibt nun drei Ansätze den Effekt eines Mediatiors zu prüfen:</p>
+<ol style="list-style-type: decimal">
+<li>Causal Steps Approach (CSA)</li>
+<li>Test of Joined Siginificance (TJS)</li>
+<li>Difference in Coefficient Methods (DCM)</li>
+</ol>
+<p>Die Empfehlungen der Literatur können wie folgt zusammengefasst werden: Es sollte die Product of Coefficient Methode (PCM) mit Bootstrap in Kombination mit dem als Test of Joined Significance (TJS) beschriebenen Vorgehen durchgeführt werden. Dabei sollte immer die Interpretation von unstandardisierten Regressionsgewichten (Rucker et al., 2011) erfolgen sowie die Reliabilitätsschätzung des Mediators über 0.90 liegen (vgl. Hoyle &amp; Robinson, 2004). Es wird empfohlen, die Stichprobe so groß wie möglich zu wählen und insbesondere auf Suppressionseffekte zu achten.</p>
+<p>Folgende Abbildung stellt den eben dargestellten Sachverhalt nochmals graphisch dar:</p>
+<!-- <center> -->
+<!-- ![**Abbildung 10**: Konzeptuelles Mediator-Modell](Images/MediatorModell.JPG){ width=100% } -->
+<!-- </center> -->
+<div id="fallbeispiel-1" class="section level2 unnumbered">
+<h2>Fallbeispiel 1</h2>
+<blockquote>
+<p>Lambert (2012) hat in seiner Studie festgestellt, dass der Konsum von pornographische Material (consumption) die Treue in einer Beziehung (infidelity) negative beeinflusst. In seiner Hypothese ging er aber auch davon aus, dass eine weitere Variable, nämlich der Einsatz mit der jemand versucht eine partnerschaftliche Beziehung (commitment) aufrecht zu erhalten, einen esentlichen Einfluss auf die Beziehung zwischen consumption und infidelity ausübt. Er vermutet, dass commitment als Mediator wirkt.</p>
+</blockquote>
+</div>
+<div id="fallbeispiel-2" class="section level2 unnumbered">
+<h2>Fallbeispiel 2</h2>
+<p>In einer Fragebogenstudie wurden Daten über negative Selbstbewertung, Abhängigkeitskognitionen und Depressivität erhoben. Die Selbstbewertung und Abhängigkeitskognition wurde mit dem Fragebogen Irrationaler Einstellungen (FIE-NSB und FIE-ABK) von <span class="citation">(Klages <a href="#ref-Klages">1989</a>)</span> gemessen, die Depressivität (BDI-GES) mit dem Beck-Depressions-Inventar von <span class="citation">(Hautzinger <a href="#ref-Hautzinger">2006</a>)</span>.</p>
+<div id="causal-mediation-analysis" class="section level3">
+<h3><span class="header-section-number">0.0.1</span> Causal Mediation Analysis</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">options</span>(<span class="dt">digits =</span> <span class="dv">2</span>)
+  
+  DF_<span class="dv">6</span> &lt;-<span class="st"> </span><span class="kw">read.spss</span>(<span class="st">&quot;Daten/Buehner2017/Regression_bsp_6.sav&quot;</span>, 
+                                <span class="dt">use.value.labels=</span><span class="ot">TRUE</span>, 
+                                <span class="dt">to.data.frame=</span><span class="ot">TRUE</span>, 
+                                <span class="dt">use.missings =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## re-encoding from UTF-8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">set.seed</span>(<span class="dv">2014</span>)
+  med.fit1 &lt;-<span class="st"> </span><span class="kw">lm</span>(fie_nsb <span class="op">~</span><span class="st"> </span>fie_abk,           <span class="dt">data =</span> DF_<span class="dv">6</span>)
+  med.fit2 &lt;-<span class="st"> </span><span class="kw">lm</span>(bdi_ges <span class="op">~</span><span class="st"> </span>fie_abk <span class="op">+</span><span class="st"> </span>fie_nsb, <span class="dt">data =</span> DF_<span class="dv">6</span>)
+  med.out  &lt;-<span class="st"> </span><span class="kw">mediate</span>(med.fit1, med.fit2, 
+                      <span class="dt">treat=</span><span class="st">&quot;fie_abk&quot;</span>, 
+                      <span class="dt">mediator=</span><span class="st">&quot;fie_nsb&quot;</span>, 
+                      <span class="dt">boot=</span><span class="ot">TRUE</span>, 
+                      <span class="dt">sims=</span><span class="dv">100</span>)
+  <span class="kw">summary</span>(med.out)</code></pre></div>
+<pre><code>## 
+## Causal Mediation Analysis 
+## 
+## Nonparametric Bootstrap Confidence Intervals with the Percentile Method
+## 
+##                Estimate 95% CI Lower 95% CI Upper p-value    
+## ACME              0.391        0.291         0.53  &lt;2e-16 ***
+## ADE               0.114       -0.046         0.26    0.26    
+## Total Effect      0.505        0.364         0.64  &lt;2e-16 ***
+## Prop. Mediated    0.775        0.557         1.10  &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Sample Size Used: 191 
+## 
+## 
+## Simulations: 100</code></pre>
+</div>
+<div id="lavaan-mediation-analysis" class="section level3">
+<h3><span class="header-section-number">0.0.2</span> Lavaan Mediation Analysis</h3>
+<p>Das Paket <em>Lavaan</em> wurde eigentlich für Pfad- und Strukturgleichungsmodelle entwickelt, aber es lassen sich damit auch Mediationsanalysen durchführen. Folgende Vorteile bieten sich durch die Verwendung dieses Paketes:</p>
+<ol style="list-style-type: decimal">
+<li>Es können robuste Schätzverfahren wie <em>Maximum Likelihood</em>, oder <em>Robuste Maximum Likelihood</em> und Bootstrapverfahren kombiniert werden.</li>
+<li>Regressionsmodelle können schnell erweitert werden, bzw. latent abzubilden.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  medModel &lt;-<span class="st"> &#39;</span>
+<span class="st">  #Direkter Effekt</span>
+<span class="st">  bdi_ges~c*fie_abk</span>
+<span class="st">  #Mediator</span>
+<span class="st">  fie_nsb~a*fie_abk</span>
+<span class="st">  bdi_ges~b*fie_nsb</span>
+<span class="st">  # indirekter Effect (a*b)</span>
+<span class="st">  ab := a*b</span>
+<span class="st">  # Totaler Effekt</span>
+<span class="st">  total := c + (a*b)</span>
+<span class="st">  &#39;</span>
+  fit &lt;-<span class="st"> </span><span class="kw">sem</span>(<span class="dt">model =</span> medModel, <span class="dt">data =</span> DF_<span class="dv">6</span>, <span class="dt">estimator=</span><span class="st">&quot;ML&quot;</span>, <span class="dt">se=</span><span class="st">&quot;boot&quot;</span>, <span class="dt">bootstrap=</span><span class="dv">100</span>)
+  
+  <span class="kw">summary</span>(fit, <span class="dt">fit.measures=</span><span class="ot">TRUE</span>, <span class="dt">standardized=</span><span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## lavaan 0.6-3 ended normally after 12 iterations
+## 
+##   Optimization method                           NLMINB
+##   Number of free parameters                          5
+## 
+##   Number of observations                           191
+## 
+##   Estimator                                         ML
+##   Model Fit Test Statistic                       0.000
+##   Degrees of freedom                                 0
+##   Minimum Function Value               0.0000000000000
+## 
+## Model test baseline model:
+## 
+##   Minimum Function Test Statistic              176.345
+##   Degrees of freedom                                 3
+##   P-value                                        0.000
+## 
+## User model versus baseline model:
+## 
+##   Comparative Fit Index (CFI)                    1.000
+##   Tucker-Lewis Index (TLI)                       1.000
+## 
+## Loglikelihood and Information Criteria:
+## 
+##   Loglikelihood user model (H0)              -1353.544
+##   Loglikelihood unrestricted model (H1)      -1353.544
+## 
+##   Number of free parameters                          5
+##   Akaike (AIC)                                2717.088
+##   Bayesian (BIC)                              2733.349
+##   Sample-size adjusted Bayesian (BIC)         2717.511
+## 
+## Root Mean Square Error of Approximation:
+## 
+##   RMSEA                                          0.000
+##   90 Percent Confidence Interval          0.000  0.000
+##   P-value RMSEA &lt;= 0.05                             NA
+## 
+## Standardized Root Mean Square Residual:
+## 
+##   SRMR                                           0.000
+## 
+## Parameter Estimates:
+## 
+##   Standard Errors                            Bootstrap
+##   Number of requested bootstrap draws              100
+##   Number of successful bootstrap draws             100
+## 
+## Regressions:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##   bdi_ges ~                                                             
+##     fie_abk    (c)    0.114    0.081    1.397    0.162    0.114    0.083
+##   fie_nsb ~                                                             
+##     fie_abk    (a)    0.507    0.073    6.952    0.000    0.507    0.420
+##   bdi_ges ~                                                             
+##     fie_nsb    (b)    0.771    0.077   10.033    0.000    0.771    0.681
+## 
+## Variances:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##    .bdi_ges          60.722    5.384   11.278    0.000   60.722    0.482
+##    .fie_nsb          80.736    8.632    9.353    0.000   80.736    0.823
+## 
+## Defined Parameters:
+##                    Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+##     ab                0.391    0.071    5.510    0.000    0.391    0.286
+##     total             0.505    0.079    6.368    0.000    0.505    0.369</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">parameterEstimates</span>(fit, <span class="dt">boot.ci.type =</span> <span class="st">&quot;bca.simple&quot;</span>)</code></pre></div>
+<pre><code>## Warning in norm.inter(t, adj.alpha): extreme order statistics used as
+## endpoints</code></pre>
+<pre><code>##       lhs op     rhs label   est    se    z pvalue ci.lower ci.upper
+## 1 bdi_ges  ~ fie_abk     c  0.11 0.081  1.4   0.16   -0.028     0.26
+## 2 fie_nsb  ~ fie_abk     a  0.51 0.073  7.0   0.00    0.377     0.66
+## 3 bdi_ges  ~ fie_nsb     b  0.77 0.077 10.0   0.00    0.622     0.92
+## 4 bdi_ges ~~ bdi_ges       60.72 5.384 11.3   0.00   52.171    72.14
+## 5 fie_nsb ~~ fie_nsb       80.74 8.632  9.4   0.00   64.436   100.93
+## 6 fie_abk ~~ fie_abk       67.24 0.000   NA     NA   67.243    67.24
+## 7      ab :=     a*b    ab  0.39 0.071  5.5   0.00    0.283     0.57
+## 8   total := c+(a*b) total  0.50 0.079  6.4   0.00    0.362     0.68</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co"># inspect( fit, &quot;rsquare&quot; )  </span></code></pre></div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Klages">
+<p>Klages, U. 1989. “Fragebogen Irrationaler Einstellungen (Fie).” <em>Hogrefe Verlag</em>.</p>
+</div>
+<div id="ref-Hautzinger">
+<p>Hautzinger, M. 2006. “Beck-Depressions-Inventar (Bdi).” <em>Bern; Huber</em>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="kategorielle-variablen.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="moderator-analyse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Modellbildung2.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

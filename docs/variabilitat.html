@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Variabilität | Statistik mit R für Fortgeschrittene</title>
+  <meta name="description" content="Statistische Modellbildung - Teil 2">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Variabilität | Statistik mit R für Fortgeschrittene" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Images/Cover.png" />
+  <meta property="og:description" content="Statistische Modellbildung - Teil 2" />
+  <meta name="github-repo" content="wgruber/Modellbildung2" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Variabilität | Statistik mit R für Fortgeschrittene" />
+  
+  <meta name="twitter:description" content="Statistische Modellbildung - Teil 2" />
+  <meta name="twitter:image" content="Images/Cover.png" />
+
+<meta name="author" content="Walter Gruber">
+
+
+<meta name="date" content="2019-04-30">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="motivation.html">
+<link rel="next" href="korrelationen.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="vorbemerkung.html"><a href="vorbemerkung.html"><i class="fa fa-check"></i>Vorbemerkung</a></li>
+<li class="chapter" data-level="" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="part"><span><b>Teil I: Variabilitäten und Korrelationen</b></span></li>
+<li class="chapter" data-level="" data-path="variabilitat.html"><a href="variabilitat.html"><i class="fa fa-check"></i>Variabilität</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html"><i class="fa fa-check"></i>Korrelationen</a><ul>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#pearson-produkt-moment-korrelation"><i class="fa fa-check"></i>Pearson Produkt Moment Korrelation</a><ul>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#beispiel-pearson-korrelation"><i class="fa fa-check"></i>Beispiel Pearson Korrelation</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#aufgabe-1"><i class="fa fa-check"></i>Aufgabe 1</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#kausalitat"><i class="fa fa-check"></i>Kausalität</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#partial--semipartialkorrelation"><i class="fa fa-check"></i>Partial- Semipartialkorrelation</a><ul>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#beispiel-partial--semipartialkorrelation"><i class="fa fa-check"></i>Beispiel Partial- Semipartialkorrelation</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#korrelationstechniken"><i class="fa fa-check"></i>Korrelationstechniken</a><ul>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#spearman-und-kendall"><i class="fa fa-check"></i>Spearman und Kendall</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#biseriale-korrelation"><i class="fa fa-check"></i>Biseriale Korrelation</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#phi-koeffizient"><i class="fa fa-check"></i>Phi-Koeffizient</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#tetrachorische-korrelation"><i class="fa fa-check"></i>Tetrachorische Korrelation</a></li>
+<li class="chapter" data-level="" data-path="korrelationen.html"><a href="korrelationen.html#polychorische-korrelation"><i class="fa fa-check"></i>Polychorische Korrelation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="losungen.html"><a href="losungen.html"><i class="fa fa-check"></i>Lösungen</a><ul>
+<li class="chapter" data-level="" data-path="losungen.html"><a href="losungen.html#aufgabe_1"><i class="fa fa-check"></i>Aufgabe_1</a></li>
+<li class="chapter" data-level="" data-path="losungen.html"><a href="losungen.html#aufgabe_2"><i class="fa fa-check"></i>Aufgabe_2</a></li>
+<li class="chapter" data-level="" data-path="losungen.html"><a href="losungen.html#aufgabe_3"><i class="fa fa-check"></i>Aufgabe_3</a></li>
+</ul></li>
+<li class="part"><span><b>Teil II: Multiple lineare Regression</b></span></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html"><i class="fa fa-check"></i>Multiple Regression</a><ul>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#definition"><i class="fa fa-check"></i>Definition</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#modellvergleich"><i class="fa fa-check"></i>Modellvergleich</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#aufgabe-mlr-1"><i class="fa fa-check"></i>Aufgabe MLR 1</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#wahl-relevanter-pradiktoren"><i class="fa fa-check"></i>Wahl relevanter Prädiktoren</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#sequentielle-modellbildung"><i class="fa fa-check"></i>Sequentielle Modellbildung</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#modellvergleich-durch-aic"><i class="fa fa-check"></i>Modellvergleich durch AIC</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#kreuzvalidierung"><i class="fa fa-check"></i>Kreuzvalidierung</a></li>
+<li class="chapter" data-level="" data-path="multiple-regression.html"><a href="multiple-regression.html#voraussetzungen-mlr"><i class="fa fa-check"></i>Voraussetzungen MLR</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="losungen-1.html"><a href="losungen-1.html"><i class="fa fa-check"></i>Lösungen</a><ul>
+<li class="chapter" data-level="" data-path="losungen-1.html"><a href="losungen-1.html#aufgabe-slr-1-lsg"><i class="fa fa-check"></i>Aufgabe SLR 1 Lsg</a></li>
+<li class="chapter" data-level="" data-path="losungen-1.html"><a href="losungen-1.html#aufgabe-mlr-1-lsg"><i class="fa fa-check"></i>Aufgabe MLR 1 Lsg</a></li>
+</ul></li>
+<li class="part"><span><b>Teil III: Dummy-Codierung</b></span></li>
+<li class="chapter" data-level="" data-path="kategorielle-pradiktoren.html"><a href="kategorielle-pradiktoren.html"><i class="fa fa-check"></i>Kategorielle Prädiktoren</a><ul>
+<li class="chapter" data-level="" data-path="kategorielle-pradiktoren.html"><a href="kategorielle-pradiktoren.html#beispiel-mit-mehrstufigen-kategoriellen-pradiktor"><i class="fa fa-check"></i>Beispiel mit mehrstufigen kategoriellen Prädiktor</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="dummy-kodierung.html"><a href="dummy-kodierung.html"><i class="fa fa-check"></i>Dummy Kodierung</a></li>
+<li class="chapter" data-level="" data-path="modellierung-mit-kategoriellen-variablen.html"><a href="modellierung-mit-kategoriellen-variablen.html"><i class="fa fa-check"></i>Modellierung mit kategoriellen Variablen</a></li>
+<li class="part"><span><b>Teil IV: Mediatior-Analyse</b></span></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html"><i class="fa fa-check"></i>Mediation</a><ul>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#konzeptuelle-modell"><i class="fa fa-check"></i>Konzeptuelle Modell</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#effektgroen-der-mediation"><i class="fa fa-check"></i>Effektgrößen der Mediation</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#fallbeispiel"><i class="fa fa-check"></i>Fallbeispiel</a><ul>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#regressionsanalyse"><i class="fa fa-check"></i>Regressionsanalyse</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Teil V: Moderator-Analyse</b></span></li>
+<li class="chapter" data-level="" data-path="moderation.html"><a href="moderation.html"><i class="fa fa-check"></i>Moderation</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html"><i class="fa fa-check"></i>Konzeptuelles Modell</a><ul>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#formale-beschreibung-des-modells"><i class="fa fa-check"></i>Formale Beschreibung des Modells</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#zentrierung-der-variablen"><i class="fa fa-check"></i>Zentrierung der Variablen</a><ul>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#eigenschaften-der-zentrierung"><i class="fa fa-check"></i>Eigenschaften der Zentrierung</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#grunde-fur-zentrierung"><i class="fa fa-check"></i>Gründe für Zentrierung</a></li>
+<li><a href="konzeptuelles-modell.html#interpretation-der-bs">Interpretation der <span class="math inline">\(b\)</span>’s</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell.html"><a href="konzeptuelles-modell.html#interaktion"><i class="fa fa-check"></i>Interaktion</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Teil VI: Analysis of Covariance</b></span></li>
+<li class="chapter" data-level="" data-path="motivation-1.html"><a href="motivation-1.html"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html"><i class="fa fa-check"></i>Kovarianzanalyse</a><ul>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#voraussetzungen"><i class="fa fa-check"></i>Voraussetzungen</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#berechnung-einer-ancova"><i class="fa fa-check"></i>Berechnung einer ANCOVA</a><ul>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#deskriptive-graphisch-und-homogenitat"><i class="fa fa-check"></i>Deskriptive, graphisch und Homogenität</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#unabhangigkeit"><i class="fa fa-check"></i>Unabhängigkeit</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#berechnung-ancova"><i class="fa fa-check"></i>Berechnung ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#interpretation-ancova"><i class="fa fa-check"></i>Interpretation ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#geplante-kontraste"><i class="fa fa-check"></i>Geplante Kontraste</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#interpretation-kovariate"><i class="fa fa-check"></i>Interpretation Kovariate</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#post-hoc-tests"><i class="fa fa-check"></i>Post hoc Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#nutzliche-graphen"><i class="fa fa-check"></i>Nützliche Graphen</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#homogenitat-der-steigung"><i class="fa fa-check"></i>Homogenität der Steigung</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#bericht-der-ergebnisse"><i class="fa fa-check"></i>Bericht der Ergebnisse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referenzen.html"><a href="referenzen.html"><i class="fa fa-check"></i>Referenzen</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistik mit R für Fortgeschrittene</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="variabilitat" class="section level1 unnumbered">
+<h1>Variabilität</h1>
+<p>Bevor wir uns mit einzelnen Techniken und Verfahren der linearen Modellbildung auseinandersetzen, soll in einem kurzen Exkurs eines der grundlegensten Prinzipien der statistischen Modellbildung wiederholt und diskutiert werden - die <em>Varianz</em> von beobachten Werten.</p>
+<p>Eigentlich ist es die Variabilität von Merkmalen, die statistische Methoden für die Erklärung von Effekten überhaupt erst auf den Plan ruft. Würden Merkmale wie z.B. Leistung einer Person, Persönlichkeitsmerkmale, Wetter, Produktionsgenauigkeit etc. nicht schwanken/variieren, würden wir heute nicht in diesem Raum sitzen und uns mit statistischen Modellen beschäftigen.</p>
+<p>Der Begriff Variabilität ist für uns so alltäglich, dass wir ganz selbstverständlich damit umgehen. Doch was steckt wirklich dahinter? Wie können wir Sie nutzen um komplexere Eigenschaften einer Sache oder eines unerklärlichen Phenomäns auf die Spur zu kommen?</p>
+<p>Betrachten wir zunächst einmal ein sehr einfaches Beispiel. In den nachfolgenden Graphen sind (sehr vereinfacht) mehrere Möglichkeiten dargestellt, wie eine Person mitsamt Hund sich entlang einer Straße bewegt.</p>
+<center>
+<div class="figure">
+<img src="Images/GassiPositiveKorrelation.JPG" alt="Abbildung 1: Gassi gehen mit Blindenhund. Die blaue Linie beschreibt den Weg des Hundehalters, die Orange den des Hundes. Die Grüne Line ist die Referenzlinie, von welcher aus der Abstand zur jeweiligen Position (Hund und Mensch) zu sechs Beobachtungszeitpunkten gemessen wurde." style="width:25.0%" />
+<p class="caption"><strong>Abbildung 1</strong>: Gassi gehen mit <em>Blindenhund</em>. Die blaue Linie beschreibt den Weg des Hundehalters, die Orange den des Hundes. Die Grüne Line ist die Referenzlinie, von welcher aus der Abstand zur jeweiligen Position (Hund und Mensch) zu sechs Beobachtungszeitpunkten gemessen wurde.</p>
+</div>
+</center>
+<p>Die Daten der Messungen sind in folgender Tabelle gegeben:</p>
+<table style="width:93%;">
+<colgroup>
+<col width="12%" />
+<col width="9%" />
+<col width="13%" />
+<col width="11%" />
+<col width="9%" />
+<col width="13%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Mensch</th>
+<th align="center">Hund</th>
+<th align="center">MenschD</th>
+<th align="center">HundD</th>
+<th align="center">KP</th>
+<th align="center">ZMensch</th>
+<th align="center">ZHund</th>
+<th align="center">ZKP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">0.83</td>
+<td align="center">1</td>
+<td align="center">0.83</td>
+<td align="center">0.71</td>
+<td align="center">0.71</td>
+<td align="center">0.5</td>
+</tr>
+<tr class="even">
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">1.83</td>
+<td align="center">2</td>
+<td align="center">3.66</td>
+<td align="center">1.56</td>
+<td align="center">1.42</td>
+<td align="center">2.22</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">-1.17</td>
+<td align="center">-1</td>
+<td align="center">1.17</td>
+<td align="center">-1</td>
+<td align="center">-0.71</td>
+<td align="center">0.71</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">-0.17</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">-0.15</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">0</td>
+<td align="center">-1.17</td>
+<td align="center">-2</td>
+<td align="center">2.34</td>
+<td align="center">-1</td>
+<td align="center">-1.42</td>
+<td align="center">1.42</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">-0.17</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">-0.15</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>In obiger Tabelle zeigen die Spalten <em>Mensch</em> und <em>Hund</em> jeweils den Abstand zur gedachten Beobachtungslinie pro Beobachtungszeitpunkt.</li>
+<li>Die Spalten <em>MenschD</em> und <em>HundD</em> ist jeweils die Differenz jeder Beobachtung zum jeweiligen Mittelwert aller Beobachtungen, also <span class="math inline">\(MD_i = M_i - \bar{M}\)</span> und <span class="math inline">\(HD_i = H_i - \bar{H}\)</span> mit <span class="math inline">\(i \in \{1,6\}\)</span>.</li>
+<li>Die Spalte <em>KP</em> zeigt das Kreuzprodukt, also <span class="math inline">\(KP_i = MD_i \cdot HD_i\)</span> mit <span class="math inline">\(i \in \{1,6\}\)</span>.</li>
+<li>Die Spalten <em>ZMensch</em> und <em>ZHund</em> entsprechen den <span class="math inline">\(z\)</span>-transformierten Werten, also <span class="math inline">\(z_i^M = (M_i - \bar{M}) / sd(M)\)</span> und <span class="math inline">\(z_i^H = (H_i - \bar{H}) / sd(H)\)</span>) mit <span class="math inline">\(i \in \{1,6\}\)</span>.</li>
+<li>Die Spalte <em>ZKP</em> entspricht dem Kreuzprodukt der z-Transformierten Werte, also <span class="math inline">\(ZKP_i = ZM_i \cdot ZH_i\)</span> mit <span class="math inline">\(i \in \{1,6\}\)</span>.</li>
+</ul>
+<p>Statistische Kennwerte für obige Daten (Mittelwert, Varianz und Standardabweichung) sind in folgender Tabelle dargestellt:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="13%" />
+<col width="11%" />
+<col width="10%" />
+<col width="12%" />
+<col width="10%" />
+<col width="10%" />
+<col width="12%" />
+<col width="10%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Mensch</th>
+<th align="center">Hund</th>
+<th align="center">MenschD</th>
+<th align="center">HundD</th>
+<th align="center">KP</th>
+<th align="center">ZMensch</th>
+<th align="center">ZHund</th>
+<th align="center">ZKP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Mean</strong></td>
+<td align="center">3.167</td>
+<td align="center">2</td>
+<td align="center">-0.003</td>
+<td align="center">0</td>
+<td align="center">1.333</td>
+<td align="center">-0.005</td>
+<td align="center">0</td>
+<td align="center">0.808</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Var</strong></td>
+<td align="center">1.367</td>
+<td align="center">2</td>
+<td align="center">1.367</td>
+<td align="center">2</td>
+<td align="center">2.052</td>
+<td align="center">0.997</td>
+<td align="center">1.008</td>
+<td align="center">0.756</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>SD</strong></td>
+<td align="center">1.169</td>
+<td align="center">1.414</td>
+<td align="center">1.169</td>
+<td align="center">1.414</td>
+<td align="center">1.433</td>
+<td align="center">0.998</td>
+<td align="center">1.004</td>
+<td align="center">0.869</td>
+</tr>
+</tbody>
+</table>
+<p>Wenn also ein Hund jeder Bewegung der Person folgt und dabei auch stets denselben Abstand hält, sind deren beobachteten Pfade zwar örtlich gesehen unterschiedlich, aber die Varianz des einen erklärt vollständig die Varianz des anderen Pfades. Mit anderen Worten, die beiden Pfade zeigen eine perfekte Kovariation. Formal wird diese <em>Kovariation</em> als <em>durchschnittliche Summe der Kreuzprodukte</em> ermittelt, also (M = Mensch, H = Hund):</p>
+<center>
+<p><span class="math inline">\(cov(M, H) = \frac{\sum_{i=1}^{6} (M_i - \bar{M}) \cdot (H_i - \bar{H})}{N-1} = 1.60\)</span></p>
+</center>
+<p>Setzt man die Beispieldaten in diese Berechnungsvorschrift ein, erhält man für die Summe der Kreuzprodukte 8. Die Kovarianz der beobachteten Werte ist (als durchschnittliche Kreuzproduktsumme) somit <span class="math inline">\(cov(M,H) =\)</span> 1.6. Die Korrelation berechnet sich dann ganz einfach zu:</p>
+<center>
+<p><span class="math inline">\(r(M, H) = \frac{cov(M,H)}{s_M \cdot s_H} = \frac{1.6}{1.169 \cdot 1.414} = 0.968 \simeq 1\)</span></p>
+</center>
+<p>Im vorliegenden Beispiel ergibt sich eine Korrelation <span class="math inline">\(r(M,H) =\)</span> 0.97 (also eine positive und perfekte Korrelation).</p>
+<p>Der Korrelationskoeffizient hat gegebüber der Kovarianz den Vorteil, dass er durch die Normierung über die Standardabweichungen:</p>
+<ol style="list-style-type: decimal">
+<li>einen (einheitenlosen) Wertebereich zwischen <span class="math inline">\(r \in [-1, 1]\)</span> aufweist und damit vergleichbar mit anderen Korrelationswerten wird.</li>
+<li>Als praktische <strong>Effektgröße</strong> interpretiert werden kann.</li>
+<li>Das Quadrat des Korrelationskoeffizienten (<span class="math inline">\(r^2\)</span>, auch <strong>Varianzaufklärung</strong>, <strong>Determinationskoeffizient</strong> genannt) Auskunft über die aufgeklärte Varianz gibt.</li>
+</ol>
+<p>Letzteres Maß spielt eine wesentliche Rolle sowohl bei der Korrelationsanalyse, als auch bei der multiplen Regression und anderen Verfahren.</p>
+<p>Die Bedeutung der Kovarianu sei anhand des verwendeten Beispiels nochmals verdeutlicht:</p>
+<blockquote>
+<p>Im Fall einer perfekten Kovarianz (also 100% Übereinstimmung der Bewegungen von Mensch und Hund), braucht man nur mehr die Bewegung einer Variablen zu wissen (z.B. die des Menschen), um die Bewegungen des Hundes zu bestimmen (erklären). Somit erklärt die Variabilität der Bewegung vom Menschen zu 100 % die Variabilität der Bewegungen des Hundes.</p>
+</blockquote>
+<p>Die Beziehung zwischen zwei (intervallskallierten) Variablen lässt sich am besten mit einem Streudiagramm darstellen:</p>
+<center>
+<p><img src="01_Korrelationen_files/figure-html/Gassi_Pos_Korr_Scatter-1.png" width="288" /></p>
+</center>
+<p>Die folgende Abbildung zeigt ein weiteres Mensch-Hund Beispiel:</p>
+<center>
+<div class="figure">
+<img src="Images/GassiNegativeKorrelation.JPG" alt="Abbildung 2: in diesem Beispiel scheint es sich um eine Hund zu handeln, der bestmöglich das Gegenteil vom Menschen macht. Bestmöglich dahingehen, dass er nicht nur in die genau entgegengesetzte Richtung ausweicht, sondern dabei auch auf den genauen Abstand der Abweichung achtet." style="width:25.0%" />
+<p class="caption"><strong>Abbildung 2</strong>: in diesem Beispiel scheint es sich um eine Hund zu handeln, der bestmöglich das Gegenteil vom Menschen macht. Bestmöglich dahingehen, dass er nicht nur in die genau entgegengesetzte Richtung ausweicht, sondern dabei auch auf den genauen Abstand der Abweichung achtet.</p>
+</div>
+</center>
+<p>In diesem Fall ist die Korrelation auch perfekt, nur eben in die entgegengesetzte Richtung, was zur Folge hat, dass diese Korrelation den Wert <span class="math inline">\(r(M,H) = -1\)</span> zeigt.</p>
+<center>
+<p><img src="01_Korrelationen_files/figure-html/Gassi_Neg_Korr_Scatter-1.png" width="288" /></p>
+</center>
+<p>Interessant und der Praxis am ehesten entsprechend, sind jedoch Fälle, in denen zwei Variablen nur teilweise Gemeinsamkeiten aufweisen. Im folgenden Beispiel wäre</p>
+<center>
+<div class="figure">
+<img src="Images/GassiBeliebigeKorrelation.JPG" alt="Abbildung 3: Hund und Mensch bewegen sich zum Teil unabhängig, zum Teil aber auch synchron. Dies entspricht dann einer Kovarianz, bzw. Korrelation die irgendwo zwischen r \in [-1, 1] liegt (im Beispiel ist r(M,H) = 0.5 und somit r^2 = 0.25)." style="width:25.0%" />
+<p class="caption"><strong>Abbildung 3</strong>: Hund und Mensch bewegen sich zum Teil unabhängig, zum Teil aber auch synchron. Dies entspricht dann einer Kovarianz, bzw. Korrelation die irgendwo zwischen <span class="math inline">\(r \in [-1, 1]\)</span> liegt (im Beispiel ist <span class="math inline">\(r(M,H) = 0.5\)</span> und somit <span class="math inline">\(r^2 = 0.25\)</span>).</p>
+</div>
+<p><img src="01_Korrelationen_files/figure-html/Gassi_Teilweis_Korr_Scatter-1.png" width="288" /></p>
+</center>
+<p>Die Korrelation liegt in diesem Beispiel bei <span class="math inline">\(r(M,H) = 0.5\)</span>. Daraus lässt sich auch nochmals eine sehr wichtige Erkenntnis bezüglich der geteilten Varianz der beiden Variablen festhalten:</p>
+<blockquote>
+<p>Bei einer Korrelation von <span class="math inline">\(r(x,y) = 0.5\)</span> entspricht der Determinationskoeffizient <span class="math inline">\(r^2(x,y) = 0.25\)</span>. In Prozent ausgedrückt, werden als 25% der Variabilität einer Variablen (z.B. Hund) durch die Variable Mensch erklärt. In welchen Abschnitten der Daten diese gemeinsame Variablität auftritt, lässt sich durch den <span class="math inline">\(r\)</span> nicht bestimmen.</p>
+</blockquote>
+<p>Diese Feststellung führt uns aber zu einer weiteren Betrachtung von Variablitäten:</p>
+<center>
+<div class="figure">
+<img src="Images/GassiAutokorrKorrelation.JPG" alt="Abbildung 4: Hund und Mensch scheinen sich wieder synchron, aber in gegenseitiger Richtung zu bewegen. Man würde also eine negative und hohe Korrelation erwarten. Interressant ist jedoch die Beobachtung, dass ein Versatz der Beobachtungen um eine Einheit zu einem hohen positiven Zusammenhang führen würde!" style="width:25.0%" />
+<p class="caption"><strong>Abbildung 4</strong>: Hund und Mensch scheinen sich wieder synchron, aber in gegenseitiger Richtung zu bewegen. Man würde also eine negative und hohe Korrelation erwarten. Interressant ist jedoch die Beobachtung, dass ein Versatz der Beobachtungen um eine Einheit zu einem hohen positiven Zusammenhang führen würde!</p>
+</div>
+</center>
+<p>Würde man davon ausgehen, dass sich der Mensch und Hund bei jedem Messzeitpunkt (1 bis 6) jeweils auf der gleichen Höhe befunden haben, dann wird man eine hohe <strong>negative Korrelation</strong> erhalten. Nimmt man jedoch an, dass der Mensch zum Messzeitpunkt (MZP) 1, der Hund aber bereits auf MZP 2 war, dann verschiebt sich die Spur des Hundes einfach um einen MZP nach oben! Korreliert man nun diese beiden Beobachtungen, würde sich eine nahezu perfekte <strong>positive Korrelation</strong> ergeben!</p>
+<blockquote>
+<p>Durch schrittweises Verschieben der Werte einer Variablen um eine Einheit (<span class="math inline">\(\tau_i\)</span>) mit anschließender Berechnung der Korrelationskoeffizienten (<span class="math inline">\(r_{\tau_i}(x,y)\)</span>), erhält man in Abhängigkeit von der Anzahl der Verschiebungen (<span class="math inline">\(i \in [0, N-1]\)</span>) maximal <span class="math inline">\(N\)</span> neue Korrelatinskoeffizienten. Man bezeichnet diese Art der Korrelationsberechnung als <strong>Kreuzkorrelation</strong>.</p>
+</blockquote>
+<p>Für das Beispiel ergibt sich eine normale Korrelation von <span class="math inline">\(r(M,H)=\)</span> -1. Die Korrelationen berechnet nach dem Versatzprinzip ergeben folgendes Bild:</p>
+<center>
+<p><img src="01_Korrelationen_files/figure-html/Gassi_Kreuz_Korr_Plot-1.png" width="480" /></p>
+</center>
+<p>Die Verschiebung <span class="math inline">\(\tau\)</span> wurde in diesem Beispiel mit <span class="math inline">\(i = 4\)</span> angegeben, d.h. es wurden die Werte der Variablen Hund um jeweils vier Schritte nach links und vier Schritte nach rechts verschoben. Bei jeder Verschiebung wurde die Korrelation berechnet (im Graphen ist die Verschiebung mit <em>Lag</em> auf der x-Achse angegeben). Auf der y-Achse wird der entsprechende Korrelationskoeffient angezeigt.</p>
+<center>
+<table style="width:25%;">
+<colgroup>
+<col width="8%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Tau</th>
+<th align="center">CrossCorr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">-4</td>
+<td align="center">-0.4253</td>
+</tr>
+<tr class="even">
+<td align="center">-3</td>
+<td align="center">0.431</td>
+</tr>
+<tr class="odd">
+<td align="center">-2</td>
+<td align="center">-0.3678</td>
+</tr>
+<tr class="even">
+<td align="center">-1</td>
+<td align="center">0.6609</td>
+</tr>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">-1</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">0.6609</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">-0.3678</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">0.431</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">-0.4253</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>Die Werte der Tabelle zeigen nochmals den krassen Wechsel der Korrelation zwischen den Werte <span class="math inline">\(\tau = 0\)</span> (also keiner Verschiebung) und <span class="math inline">\(\tau = 1\)</span>. Werden die Werte um nur einen Beobachtungspunkt verschoben, ändert sich die Korrelation von einer perfekt negativen, zu einer sehr hohen positiven Korrelation!</p>
+<p>Eine weitere wichtige Eigenschaft die mit Hilfe dieser Vorgehensweise geprüft werden kann, ist die der sogenannten <strong>Autokorrelation</strong>. Diese funktioniert im Prinzip wie die eben beschriebene Kreuzkorrelation, mit dem Unterschied, dass eine Variable mit verschobenen “Eigenversionen” korreliert wird. Folgendes Beispiel zeigt das Ergebnis für die Variable Mensch unseres Beispiels:</p>
+<center>
+<p><img src="01_Korrelationen_files/figure-html/Gassi_Auto_Korr_Plot-1.png" width="480" /></p>
+</center>
+<p>Die Verschiebung <span class="math inline">\(\tau\)</span> wurde in diesem Beispiel mit <span class="math inline">\(i = 4\)</span> angegeben, d.h. es wurden die Werte der Variablen Mensch ebenfalls schrittweise in eine Richtung verschoben. Bei jeder Verschiebung wurde die Korrelation berechnet (im Graphen ist die Verschiebung mit <em>Lag</em> auf der <span class="math inline">\(x\)</span>-Achse angegeben). Auf der <span class="math inline">\(y\)</span>-Achse wird der entsprechende Korrelationskoeffient angezeigt.</p>
+<center>
+<table style="width:25%;">
+<colgroup>
+<col width="8%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Tau</th>
+<th align="center">CrossCorr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">-0.6609</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">0.3678</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">-0.431</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">0.4253</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>Die perfekte positive Korrelation bei einer Verschiebung um den Wert <span class="math inline">\(\tau = 0\)</span> ist bei der Autokorrelation trivial, da es sich ja um einen direkten Vergleich der Variablen mit sich selbst handelt. Bei Lag = 1 wird jedoch ersichtlich, dass sich die Korrelation ändert (auf <span class="math inline">\(r = -0.66\)</span>), springt dann wieder auf <span class="math inline">\(r = +0.37\)</span> usw.</p>
+<p>Es ist zu beachten, dass dieser Datensatz nur zu Demonstrationszwecken erzeugt wurde. Eine inhaltliche Interpretation wäre im gegebenen Fall nicht angebracht.</p>
+<p>Nichts desto trotz sollte durch diese Beispiel gezeigt werden, dass sowohl die Kreuzkorrelation als auch die Autokorrelation vor allem in der Zeitreihenanalyse (und damit auch bei Längsschnittstudien) wichtige Erkenntnisse über die betrachteten Variablen liefern können. Vor allem kann eine vorliegende <strong>Autokorrelation</strong> bei der MLR zu beträchtlichen Einschränkungen der Gültigkeit einen Modells beitragen. Bei den MLR-Methoden werden wir noch über Möglichkeiten sprechen, Autokorrelationen auf statitische Signifikanz zu prüfen (Stichwort: <a href="https://en.wikipedia.org/wiki/Durbin%E2%80%93Watson_statistic" target="_blank">Durbin-Watson</a>).</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="motivation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="korrelationen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Modellbildung2.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

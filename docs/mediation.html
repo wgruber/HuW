@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Mediation | Höhere Statistik und Wissenschaftstheorie</title>
+  <meta name="description" content="Übungseinheit">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Mediation | Höhere Statistik und Wissenschaftstheorie" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="Images/Cover.png" />
+  <meta property="og:description" content="Übungseinheit" />
+  <meta name="github-repo" content="wgruber/HuW" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Mediation | Höhere Statistik und Wissenschaftstheorie" />
+  
+  <meta name="twitter:description" content="Übungseinheit" />
+  <meta name="twitter:image" content="Images/Cover.png" />
+
+<meta name="author" content="Walter Gruber">
+
+
+<meta name="date" content="2019-05-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="vorbemerkung.html">
+<link rel="next" href="moderation.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="vorbemerkung.html"><a href="vorbemerkung.html"><i class="fa fa-check"></i>Vorbemerkung</a></li>
+<li class="part"><span><b>Teil I: Mediatior-Analyse</b></span></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html"><i class="fa fa-check"></i>Mediation</a><ul>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#konzeptuelles-modell"><i class="fa fa-check"></i>Konzeptuelles Modell</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#effektgroen-der-mediation"><i class="fa fa-check"></i>Effektgrößen der Mediation</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#fallbeispiel"><i class="fa fa-check"></i>Fallbeispiel</a><ul>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#regressionsanalyse"><i class="fa fa-check"></i>Regressionsanalyse</a></li>
+<li class="chapter" data-level="" data-path="mediation.html"><a href="mediation.html#mediator-analyse"><i class="fa fa-check"></i>Mediator-Analyse</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Teil II: Moderator-Analyse</b></span></li>
+<li class="chapter" data-level="" data-path="moderation.html"><a href="moderation.html"><i class="fa fa-check"></i>Moderation</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html"><i class="fa fa-check"></i>Konzeptuelles Modell</a><ul>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html#formale-beschreibung-des-modells"><i class="fa fa-check"></i>Formale Beschreibung des Modells</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html#zentrierung-der-variablen"><i class="fa fa-check"></i>Zentrierung der Variablen</a><ul>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html#eigenschaften-der-zentrierung"><i class="fa fa-check"></i>Eigenschaften der Zentrierung</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html#grunde-fur-zentrierung"><i class="fa fa-check"></i>Gründe für Zentrierung</a></li>
+<li><a href="konzeptuelles-modell-1.html#interpretation-der-bs">Interpretation der <span class="math inline">\(b\)</span>’s</a></li>
+<li class="chapter" data-level="" data-path="konzeptuelles-modell-1.html"><a href="konzeptuelles-modell-1.html#interaktion"><i class="fa fa-check"></i>Interaktion</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>Teil III: Analysis of Covariance</b></span></li>
+<li class="chapter" data-level="" data-path="motivation.html"><a href="motivation.html"><i class="fa fa-check"></i>Motivation</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html"><i class="fa fa-check"></i>Kovarianzanalyse</a><ul>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#voraussetzungen"><i class="fa fa-check"></i>Voraussetzungen</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#berechnung-einer-ancova"><i class="fa fa-check"></i>Berechnung einer ANCOVA</a><ul>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#deskriptive-graphisch-und-homogenitat"><i class="fa fa-check"></i>Deskriptive, graphisch und Homogenität</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#unabhangigkeit"><i class="fa fa-check"></i>Unabhängigkeit</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#berechnung-ancova"><i class="fa fa-check"></i>Berechnung ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#interpretation-ancova"><i class="fa fa-check"></i>Interpretation ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#geplante-kontraste"><i class="fa fa-check"></i>Geplante Kontraste</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#interpretation-kovariate"><i class="fa fa-check"></i>Interpretation Kovariate</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#post-hoc-tests"><i class="fa fa-check"></i>Post hoc Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#nutzliche-graphen"><i class="fa fa-check"></i>Nützliche Graphen</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#homogenitat-der-steigung"><i class="fa fa-check"></i>Homogenität der Steigung</a></li>
+<li class="chapter" data-level="" data-path="kovarianzanalyse.html"><a href="kovarianzanalyse.html#bericht-der-ergebnisse"><i class="fa fa-check"></i>Bericht der Ergebnisse</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referenzen.html"><a href="referenzen.html"><i class="fa fa-check"></i>Referenzen</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Höhere Statistik und Wissenschaftstheorie</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mediation" class="section level1 unnumbered">
+<h1>Mediation</h1>
+<p>Die Mediatior-Analyse kann als Spezialfall der multiplen linearen Regression (MLR) gesehen werden. Wie bei der MLR wollen wir den Zusammenhang mehrerer Variablen untersuchen, wobei in der Mediator-Analyse speziell der Einfluss eines Prädiktors (des Mediators, <span class="math inline">\(M\)</span>) auf die Beziehung zwischen einem weiteren Prädiktor <span class="math inline">\(X\)</span> und dem Kriterium <span class="math inline">\(Y\)</span> im Zentrum des Interesses steht.</p>
+<p>Bei der Mediation steht der Mediator <span class="math inline">\((M)\)</span> sowohl in Beziehung zu <span class="math inline">\(X\)</span> als auch zu <span class="math inline">\(Y\)</span>. Der <strong>direkte Effekt</strong> zwischen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> wird durch den <strong>indirekten Effekt</strong> über <span class="math inline">\(M\)</span> erklärt, also durch <span class="math inline">\(X \rightarrow M \rightarrow Y\)</span>.</p>
+<div id="konzeptuelles-modell" class="section level2 unnumbered">
+<h2>Konzeptuelles Modell</h2>
+<p>Eine Variable bezeichnet man als Mediatorvariable <span class="math inline">\(M\)</span>, wenn sie die Beziehung zweier anderer Variablen (<span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span>) vermittelt/erklärt.</p>
+<center>
+<div class="figure">
+<img src="Images/MediatorModell.JPG" alt="Abbildung 15: Konzeptuelles Modell Mediation" style="width:60.0%" />
+<p class="caption"><strong>Abbildung 15</strong>: Konzeptuelles Modell Mediation</p>
+</div>
+</center>
+<p>Dieser schematischen Darstellung kann man entnehmen, dass die Mediatorvariable dann einen Einfluss auf die Beziehung zwischen dem Prädiktor <span class="math inline">\(X\)</span> und dem Kriterium <span class="math inline">\(Y\)</span> hat, wenn sich die Beziehung zwischen <span class="math inline">\(X\)</span> und <span class="math inline">\(Y\)</span> (im Diagramm Pfad <span class="math inline">\(c\)</span> - totaler Effekt) durch Berücksichtigung des Mediators <span class="math inline">\(M\)</span> ändert. Diese Änderung ist durch den direkten Effekt (im Diagramm Pfad <span class="math inline">\(c&#39;\)</span>) dargestellt. Die Stärke der Änderung und damit auch der Effekt des Mediators lässt sich darüber hinaus durch den indirekten Effekt (<span class="math inline">\(a \cdot b\)</span>) beurteilen.</p>
+<p>Um ein Mediatormodell zu prüfen, sind eine Reihe von Regressionsanalysen erforderlich:</p>
+<ol style="list-style-type: decimal">
+<li><p>Eine Regression mit <span class="math inline">\(X\)</span> als Prädiktor und <span class="math inline">\(Y\)</span> als Kriterium. Der daraus resultierende Regressionskoeffizient <span class="math inline">\(b_1\)</span> entspricht dem Pfad <strong>c</strong> im konzeptuellen Modell.</p></li>
+<li><p>Eine Regression mit <span class="math inline">\(X\)</span> als Prädiktor und <span class="math inline">\(M\)</span> als Kriterium. Der daraus resultierende Regressionskoeffizient <span class="math inline">\(b_2\)</span> entspricht dem Pfad <strong>a</strong> im konzeptuellen Modell.</p></li>
+<li><p>Eine Regression mit <span class="math inline">\(X\)</span> und <span class="math inline">\(M\)</span> als Prädiktoren und <span class="math inline">\(Y\)</span> als Kriterium. Der daraus resultierende Regressionskoeffizient <span class="math inline">\(b_3\)</span> des Prädiktors <span class="math inline">\(X\)</span> entspricht dem Pfad <strong>c’</strong> und der Koeffizient <span class="math inline">\(b_4\)</span> des Mediators <span class="math inline">\(M\)</span> entspricht dem Pfad <strong>b</strong> im konzeptuellen Modell.</p></li>
+</ol>
+<p>Folgende Ergebnisse dieser Modelle würden für den Effekt des Mediators sprechen:</p>
+<ol style="list-style-type: decimal">
+<li>Die Regressionkoeffizienten <span class="math inline">\(b_1, b_2\)</span> und <span class="math inline">\(b_3\)</span> (also die Pfade <strong>a</strong>, <strong>b</strong>, <strong>c</strong> im Modell) zeigen ein signifikantes Ergebnis.</li>
+<li>Der Regressionkoeffizient <span class="math inline">\(b_3\)</span> muss kleiner sein als <span class="math inline">\(b_1\)</span> (<span class="math inline">\(c&#39; &lt; c\)</span> im Modell)</li>
+</ol>
+<p>Obwohl die Regressionsanalyse die grundlegende Idee der Mediationsanalyse gut zeigt, hat sie den Nachteil, dass der Effekt (Bedeutsamkeit) der Reduktion nicht wirklich klar ersichtlich ist.</p>
+<p>Häufig findet man noch folgende Kriterien (Baron and Kenny’s Method) für die Entscheidung ob eine Mediation vorliegt:</p>
+<blockquote>
+<p>Eine Mediation liegt vor, wenn die Beziehung zwischen Prädiktor und Kriterium ohne Berücksichtigung des Mediators signifikant (p &lt; .05) und mit Berücksichtigung des Mediators nicht mehr signifikant ist.</p>
+</blockquote>
+<p>Diese Entscheidungsgrundlage entspricht dem NHST-Testen (all or nothing) und kann zu <em>maßgeblichen Fehlentscheidungen</em> führen, denn:</p>
+<ul>
+<li>Ein <span class="math inline">\(b\)</span>-Wert kann sich unter Umständen nur um ein wenig ändern, der dazugehörige <span class="math inline">\(p\)</span>-Wert kann sich dabei jedoch ohne weiteres von signifikant auf nicht signifikant ändern!</li>
+<li>Bei einer großen Änderung des <span class="math inline">\(b\)</span>-Wertes kann es aber auch durchaus vorkommen, dass beide signifikant bleiben!</li>
+</ul>
+<p>Als alternative Möglichkeiten zur Entscheidungsfindung haben sich folgende Verfahren bewährt:</p>
+<ul>
+<li><strong>Bootstrap Test</strong>: berechnet Konfidenzintervalle für den indirekten Effekt. Liegt der Null-Effekt im CI, kann man davon ausgehen, dass keine Mediation vorliegt, anderenfalls hat man einen Mediator-Effekt gefunden. Diese Methode gibt über den Sobel-Test hinaus auch noch Auskunft über die Güte (Breite des CIs) des gefundenen Mediatior-Effektes. Wenn möglich, sollte diese Methode zur Absicherung des Effektes gewählt werden.</li>
+<li><strong>Sobel Test</strong>: testet den indirekten Effekt (kombinierter Pfad <strong>a</strong> und <strong>b</strong>). Liefert dieser Test ein signifikantes Ergebnis, liegt eine signifikante Mediation vor. <strong>Allerdings zeigt dieser Test folgende Problembereiche</strong>:
+<ul>
+<li>Die Annahme, dass <span class="math inline">\(a \cdot b\)</span> eine normalverteilte Stichprobenverteilung besitzt, ist vor allem bei kleinen Stichproben zweifelhaft.</li>
+<li>Der Test besitzt eine schlecht Power womit große Konfidenzintervall einhergehen. Die Präzision des Tests ist damit in Frage zu stellen!</li>
+</ul></li>
+</ul>
+</div>
+<div id="effektgroen-der-mediation" class="section level2 unnumbered">
+<h2>Effektgrößen der Mediation</h2>
+<p>Die einfachste Effektgröße ist der Regressionskoeffizient für den indirekten Effekt und das dazugehörige CI. Der indirekte Effekt ergibt sich aus den kombinierten Effekten der Pfade <strong>a</strong> und <strong>b</strong>, also:</p>
+<p>Unstandardisierter indirekter Effekt: <span class="math inline">\(UIE = a \cdot b\)</span></p>
+<p>Um einerseits den Effekt mit anderen Mediationsmodellen vergleichen zu können, und andererseits einen Kennwert zu berichten, der vor allem in einer Meta-Analyse verwendet werden kann, standardisiert man den indirekten Effekt (<strong>index of mediation</strong>):</p>
+<p>Standardisierter indirekter Effekt: <span class="math inline">\(SIE = a \cdot b \cdot \frac{s_{X_i}}{s_{Y}}\)</span></p>
+</div>
+<div id="fallbeispiel" class="section level2 unnumbered">
+<h2>Fallbeispiel</h2>
+<p>Wir betrachten zunächst folgende Hypothese:</p>
+<blockquote>
+<p>Die Motivation zu lernen ist einerseits durch die Güte des Unterrichtes und andererseits durch die Erfolge aufgrund der Lernleistung beeinflusst. Man möchte nun herausfinden, welcher der beiden Prädiktoren eine bessere Vorhersage liefert. Dazu wurden in einer Lehr-Lernstudie mit Einzeltutoren von <span class="math inline">\(N = 10\)</span> StudentInnen Daten zur <em>Motivation</em>, <em>Lernleistung</em> und <em>Unterrichtsgüte</em> erfasst.</p>
+</blockquote>
+<center>
+<table style="width:65%;">
+<colgroup>
+<col width="18%" />
+<col width="20%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Motivation</th>
+<th align="center">Lernleistung</th>
+<th align="center">Unterrichtsguete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">98</td>
+<td align="center">4</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="center">98</td>
+<td align="center">5</td>
+<td align="center">6.5</td>
+</tr>
+<tr class="odd">
+<td align="center">103</td>
+<td align="center">6</td>
+<td align="center">7</td>
+</tr>
+<tr class="even">
+<td align="center">101</td>
+<td align="center">7</td>
+<td align="center">5.5</td>
+</tr>
+<tr class="odd">
+<td align="center">100</td>
+<td align="center">8</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">106</td>
+<td align="center">10</td>
+<td align="center">6.5</td>
+</tr>
+<tr class="odd">
+<td align="center">111</td>
+<td align="center">11</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center">125</td>
+<td align="center">12</td>
+<td align="center">10.5</td>
+</tr>
+<tr class="odd">
+<td align="center">120</td>
+<td align="center">14</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center">115</td>
+<td align="center">15</td>
+<td align="center">10</td>
+</tr>
+</tbody>
+</table>
+</center>
+<div id="regressionsanalyse" class="section level3 unnumbered">
+<h3>Regressionsanalyse</h3>
+<p>Wenn wir von der Hypothese ausgehen, dass die <em>Motivation</em> zu lernen durch die <em>Güte des Unterrichts</em> sowie der <em>Lernleistung</em> beeinflusst wird, ist es zunächst von Interesse festzustellen, ob dieses Merkmale überhaupt in Beziehung zueinander stehen. In folgenden rechnen wir daher zuerst die Korrelationen zwischen den Merkmalen. Kopier den Code in ein R-Script und führe diesen aus. Diskutiere die Ergbnisse!</p>
+<pre class="sourceCode r"><code class="sourceCode r">    <span class="co"># library(SciViews) # fÃ¼r Funktion correlation</span>
+    KorTab &lt;-<span class="st"> </span>SciViews<span class="op">::</span><span class="kw">correlation</span>(DF)
+    <span class="kw">pander</span>(KorTab, <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre>
+<table style="width:97%;">
+<colgroup>
+<col width="31%" />
+<col width="18%" />
+<col width="20%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Motivation</th>
+<th align="center">Lernleistung</th>
+<th align="center">Unterrichtsguete</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Motivation</strong></td>
+<td align="center">1</td>
+<td align="center">0.867</td>
+<td align="center">0.741</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Lernleistung</strong></td>
+<td align="center">0.867</td>
+<td align="center">1</td>
+<td align="center">0.746</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Unterrichtsguete</strong></td>
+<td align="center">0.741</td>
+<td align="center">0.746</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">plot</span>(KorTab, <span class="dt">type =</span> <span class="st">&quot;lower&quot;</span>, <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre>
+<p><img src="01_Mediation_files/figure-html/Korrelationen-1.png" width="672" /></p>
+<p>Wenn wir nun die Merkmale <em>Lernleistung</em> und <em>Unterrichtsgüte</em> als Regressoren und <em>Motivation</em> als Regressand verwenden, können wir folgendes Modell aufstellen:</p>
+<center>
+<p><span class="math inline">\(Motivation = b_0 + b_1 \cdot Lernleistung + b_2 \cdot Unterrichtsguete\)</span></p>
+</center>
+<p>Kopiere den nachfolgenden Code in dein R-Script und führe diesen aus. Diskutiere die Ergebnisse und vergleiche diese mit nachfolgendem statistischen Pfadmodell.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    Mod1     &lt;-<span class="st"> </span><span class="kw">lm</span>(Motivation <span class="op">~</span><span class="st"> </span>Lernleistung <span class="op">+</span><span class="st"> </span>Unterrichtsguete, <span class="dt">data =</span> DF)
+    Mod1_Std &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">scale</span>(Motivation) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(Lernleistung) <span class="op">+</span><span class="st"> </span>
+<span class="st">                     </span><span class="kw">scale</span>(Unterrichtsguete), 
+                   <span class="dt">data =</span> DF)
+    
+    <span class="co"># pander(summary(Mod1), digits = 3)</span>
+    <span class="kw">pander</span>(<span class="kw">summary</span>(Mod1_Std), <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre>
+<table>
+<colgroup>
+<col width="38%" />
+<col width="14%" />
+<col width="16%" />
+<col width="15%" />
+<col width="15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">-3.4e-16</td>
+<td align="center">0.172</td>
+<td align="center">-1.98e-15</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>scale(Lernleistung)</strong></td>
+<td align="center">0.708</td>
+<td align="center">0.271</td>
+<td align="center">2.61</td>
+<td align="center">0.0349</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>scale(Unterrichtsguete)</strong></td>
+<td align="center">0.213</td>
+<td align="center">0.271</td>
+<td align="center">0.784</td>
+<td align="center">0.459</td>
+</tr>
+</tbody>
+</table>
+<table style="width:88%;">
+<caption>Fitting linear model: scale(Motivation) ~ scale(Lernleistung) + scale(Unterrichtsguete)</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="12%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">0.5424</td>
+<td align="center">0.7712</td>
+<td align="center">0.7058</td>
+</tr>
+</tbody>
+</table>
+<p>Die dargestellten Ergebnisse zeigen die standardisierten Koeffizienten (<span class="math inline">\(\beta_{LL}, \beta_{UG}\)</span>). In einem statistischen Pfadmodell lassen sich die bisher gewonnenen Ergebnisse folgendermaßen zusammenfassen:</p>
+<center>
+<div class="figure">
+<img src="Images/Pfadanalyse_Modell1.jpg" alt="Abbildung 16: statistisches Pfadmodell mit standardisierten Regressionskoeffizienten" style="width:60.0%" />
+<p class="caption"><strong>Abbildung 16</strong>: statistisches Pfadmodell mit standardisierten Regressionskoeffizienten</p>
+</div>
+</center>
+<p>Dem Ergebnis ist weiters zu entnehmen, dass beide Prädiktoren das Ausmaß der Motivation vorhersagen, wobei die Lernleistung (<span class="math inline">\(a = \beta_{LL} = 0.708\)</span> und somit <span class="math inline">\(R_{LL}^2 = 0.504\)</span>) sich als der bessere Prädiktor als die Unterrichtsgüte (<span class="math inline">\(b = \beta_{UG} = 0.213\)</span> und somit <span class="math inline">\(R_{UG}^2 = 0.044\)</span>) herausstellt.</p>
+</div>
+<div id="mediator-analyse" class="section level3 unnumbered">
+<h3>Mediator-Analyse</h3>
+<p>Man könnte allerdings auch von folgender Hypothese ausgehen:</p>
+<blockquote>
+<p>Je höher die <em>Unterrichtsgüte</em>, desto höher die <em>Motivation</em> und je höher die <em>Motivation</em> der Studenten, desto höher wird die <em>Lernleistung</em> ausfallen. Die Modellvorstellung wäre demnach <em>Unterrichtsgüte</em> <span class="math inline">\(\rightarrow\)</span> <em>Motivation</em> <span class="math inline">\(\rightarrow\)</span> <em>Lernleistung</em>. Die <em>Motivation</em> wäre dann nicht ein Effekt der <em>Lernleistung</em>, was bedeutet dass die Kausalwirkung umgekehrt verläuft.</p>
+</blockquote>
+<p>In diesem Fall würde die <em>Unterrichtsgüte</em> indirekt über die Mediatorvariable <em>Motivation</em> auf die <em>Lernleistung</em> wirken. Darüber hinaus ist auch anzunehmen, dass die <em>Unterrichtsgüte</em> auch eine direkte Wirkung auf die <em>Lernleistung</em> ausübt. Diese Modellvorstellung lässt sich im folgenden Pfadmodell abbilden:</p>
+<center>
+<div class="figure">
+<img src="Images/Pfadanalyse_Modell2.jpg" alt="Abbildung 17: Pfadmodell mit standardisierten Regressionskoeffizienten in einem Mediator-Modell" style="width:60.0%" />
+<p class="caption"><strong>Abbildung 17</strong>: Pfadmodell mit standardisierten Regressionskoeffizienten in einem Mediator-Modell</p>
+</div>
+</center>
+<p>Diese Modellvorstellung kann man in folgenden Regressionsberechnungen zerlegen:</p>
+<ol style="list-style-type: decimal">
+<li>In der ersten Regression wird die abhängige Variable (Output, Kriterium) <em>Lernleistung</em> durch die unabhängige Variable (Prädiktor) <em>Unterrichtsgüte</em> vorhergesagt. Im vorliegenden Beispiel bezeichnen wir den Steigungskoeffizienten mit <span class="math inline">\(b_1\)</span>. Dieser entspricht im konzeptuellen Modell dem Pfad <strong>c</strong>. Formal entspricht das Modell:</li>
+</ol>
+<center>
+<p><span class="math inline">\(Lernleistung = b_0 + b_1 \cdot Unterrichtsguete\)</span></p>
+</center>
+<p>Kopiere den nachfolgenden Code in dein R-Script und führe diesen aus. Diskutiere die Ergebnisse und vergleiche diese mit obigen Pfadmodell.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    Med_Mod_C     &lt;-<span class="st"> </span><span class="kw">lm</span>(Lernleistung <span class="op">~</span><span class="st"> </span>Unterrichtsguete, <span class="dt">data =</span> DF)
+    Med_Mod_C_Std &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">scale</span>(Lernleistung) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(Unterrichtsguete), <span class="dt">data =</span> DF)
+    
+    <span class="co"># pander(summary(Med_Mod_C), digits = 3)</span>
+    <span class="kw">pander</span>(<span class="kw">summary</span>(Med_Mod_C_Std), <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="14%" />
+<col width="17%" />
+<col width="13%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">3.57e-17</td>
+<td align="center">0.224</td>
+<td align="center">1.6e-16</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>scale(Unterrichtsguete)</strong></td>
+<td align="center">0.746</td>
+<td align="center">0.236</td>
+<td align="center">3.16</td>
+<td align="center">0.0133</td>
+</tr>
+</tbody>
+</table>
+<table style="width:88%;">
+<caption>Fitting linear model: scale(Lernleistung) ~ scale(Unterrichtsguete)</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="12%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">0.7068</td>
+<td align="center">0.5559</td>
+<td align="center">0.5004</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li>In der zweiten Regression betrachten wir den Pfad <em>Unterrichtsgüte</em> zu <em>Motivation</em> (im konzeptuellen Modell der Pfad <strong>a</strong>), alsoe:</li>
+</ol>
+<center>
+<p><span class="math inline">\(Motiviation = b_0 + b_1 \cdot Unterrichtsguete + \varepsilon_{Mot}\)</span></p>
+</center>
+<p>Kopiere den nachfolgenden Code in dein R-Script und führe diesen aus. Diskutiere die Ergebnisse und vergleiche diese mit obigen Pfadmodell.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    Med_Mod_A     &lt;-<span class="st"> </span><span class="kw">lm</span>(Motivation <span class="op">~</span><span class="st"> </span>Unterrichtsguete, <span class="dt">data =</span> DF)
+    Med_Mod_A_Std &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">scale</span>(Motivation) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(Unterrichtsguete), <span class="dt">data =</span> DF)
+    
+    <span class="co"># pander(summary(Med_Mod_A), digits = 3)</span>
+    <span class="kw">pander</span>(<span class="kw">summary</span>(Med_Mod_A_Std), <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre>
+<table style="width:100%;">
+<colgroup>
+<col width="38%" />
+<col width="15%" />
+<col width="16%" />
+<col width="14%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">-3.15e-16</td>
+<td align="center">0.225</td>
+<td align="center">-1.4e-15</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>scale(Unterrichtsguete)</strong></td>
+<td align="center">0.741</td>
+<td align="center">0.238</td>
+<td align="center">3.12</td>
+<td align="center">0.0143</td>
+</tr>
+</tbody>
+</table>
+<table style="width:88%;">
+<caption>Fitting linear model: scale(Motivation) ~ scale(Unterrichtsguete)</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="12%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">0.7126</td>
+<td align="center">0.5486</td>
+<td align="center">0.4922</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" style="list-style-type: decimal">
+<li>In der dritten Regression wird nun die Beziehung <em>Unterrichtsgüte</em> und <em>Lernleistung</em>, wie auch <em>Motivation</em> und Lernleistung (im konzeptuellen Modell der Pfad <strong>b</strong> und <strong>c’</strong>) überprüft. Das formale Modell lautet also:</li>
+</ol>
+<center>
+<p><span class="math inline">\(Lernleistung = b_0 + b_1 \cdot Unterrichtsguete + b_2 \cdot Motivation + \varepsilon_{LL}\)</span></p>
+</center>
+<p>Kopiere den nachfolgenden Code in dein R-Script und führe diesen aus. Diskutiere die Ergebnisse und vergleiche diese mit obigen Pfadmodell.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    Med_Mod_CS_B     &lt;-<span class="st"> </span><span class="kw">lm</span>(Lernleistung <span class="op">~</span><span class="st"> </span>Unterrichtsguete <span class="op">+</span><span class="st"> </span>Motivation, <span class="dt">data =</span> DF)
+    Med_Mod_CS_B_Std &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">scale</span>(Lernleistung) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(Unterrichtsguete) <span class="op">+</span><span class="st"> </span>
+<span class="st">                                                 </span><span class="kw">scale</span>(Motivation), 
+                                                 <span class="dt">data =</span> DF)
+    
+    <span class="co"># pander(summary(Med_Mod_CS_B), digits = 3)</span>
+    <span class="kw">pander</span>(<span class="kw">summary</span>(Med_Mod_CS_B_Std), <span class="dt">digits =</span> <span class="dv">3</span>)</code></pre>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="14%" />
+<col width="17%" />
+<col width="13%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">2.55e-16</td>
+<td align="center">0.17</td>
+<td align="center">1.5e-15</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>scale(Unterrichtsguete)</strong></td>
+<td align="center">0.23</td>
+<td align="center">0.267</td>
+<td align="center">0.861</td>
+<td align="center">0.418</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>scale(Motivation)</strong></td>
+<td align="center">0.696</td>
+<td align="center">0.267</td>
+<td align="center">2.61</td>
+<td align="center">0.0349</td>
+</tr>
+</tbody>
+</table>
+<table style="width:88%;">
+<caption>Fitting linear model: scale(Lernleistung) ~ scale(Unterrichtsguete) + scale(Motivation)</caption>
+<colgroup>
+<col width="20%" />
+<col width="30%" />
+<col width="12%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Observations</th>
+<th align="center">Residual Std. Error</th>
+<th align="center"><span class="math inline">\(R^2\)</span></th>
+<th align="center">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">0.538</td>
+<td align="center">0.7749</td>
+<td align="center">0.7106</td>
+</tr>
+</tbody>
+</table>
+<p>Die bis zu diesem Punkt durchgeführten Analysen lassen uns zwar den Effekt des Mediators erkennen, aber die Abschätzung, ob dieser auch statistisch signifikant ist. Im letzten Schritt unserer Analyse verwenden wir das R-Paket <em>mediation</em>. Kopiere nachfolgenden Code in dein Skript und führe die Zeilen aus.</p>
+<pre class="sourceCode r"><code class="sourceCode r">    <span class="co"># library(mediation)</span>
+    model<span class="fl">.0</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(Lernleistung <span class="op">~</span><span class="st"> </span>Unterrichtsguete, DF)
+    model.M &lt;-<span class="st"> </span><span class="kw">lm</span>(Motivation   <span class="op">~</span><span class="st"> </span>Unterrichtsguete, DF)
+    model.Y &lt;-<span class="st"> </span><span class="kw">lm</span>(Lernleistung <span class="op">~</span><span class="st"> </span>Unterrichtsguete <span class="op">+</span><span class="st"> </span>Motivation, DF)
+    med.out &lt;-<span class="st"> </span>mediation<span class="op">::</span><span class="kw">mediate</span>(model.M, model.Y, <span class="dt">treat=</span><span class="st">&#39;Unterrichtsguete&#39;</span>, <span class="dt">mediator=</span><span class="st">&#39;Motivation&#39;</span>,
+                                  <span class="dt">boot=</span><span class="ot">TRUE</span>, <span class="dt">sims=</span><span class="dv">500</span>)
+    
+    <span class="co"># summary(model.0)</span>
+    <span class="co"># summary(model.M)</span>
+    <span class="co"># summary(model.Y)</span>
+    <span class="co"># summary.mediate(med.out)</span></code></pre>
+<center>
+<div class="figure">
+<img src="Images/MediationOutput.jpg" alt="Abbildung 18: Ergebnis der Mediator-Analyse" style="width:80.0%" />
+<p class="caption"><strong>Abbildung 18</strong>: Ergebnis der Mediator-Analyse</p>
+</div>
+</center>
+<ol style="list-style-type: decimal">
+<li>Der angegebene totale Effekt (<span class="math inline">\(c = b_1 = 1.5395\)</span>) entspricht dem Effekt von Unterrichtsgüte auf die Lernleistung (ohne Berücksichtigung des Mediators!).</li>
+<li>Der direkte Effekt (ADE, <span class="math inline">\(c&#39; = b_4 = 0.4743\)</span>) spiegelt den Effelt von Unterrichtsgüte auf Lernleistung unter Berücksichtigung der Motivation wider.</li>
+<li>Der Mediator-Effekt (ACME) entspricht der Differenz des totalen und direkten Effektes (also <span class="math inline">\(c - c&#39; = b_1 - b_4 = 1.5395 - 0.4743 = 1.0651\)</span>). Das entspricht natürlich auch dem Produkt von <span class="math inline">\(a \cdot b = b_2 \cdot b_3 = 3.88 \cdot 0.275 = 1.0651\)</span>.</li>
+</ol>
+<p>Wird dieser Effekt statistisch signigikant, nimmt man die Hypothese der Wirksamkeit des Mediators an.</p>
+
+</div>
+</div>
+</div>
+
+
+
+    
+    <span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())
+    <span class="kw">graphics.off</span>()
+    <span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&quot;pacman&quot;</span>)) <span class="kw">install.packages</span>(<span class="st">&quot;pacman&quot;</span>)
+    pacman<span class="op">::</span><span class="kw">p_load</span>(DT, ggplot2, interactions, pander)
+    <span class="kw">options</span>(<span class="dt">digits=</span><span class="dv">3</span>)
+    <span class="co"># Verzeichnise InitialisierenCPS85</span></code></pre>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="vorbemerkung.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="moderation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Modellbildung2.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
